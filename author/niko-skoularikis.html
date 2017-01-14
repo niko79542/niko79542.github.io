@@ -21,10 +21,10 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://niko79542.github.io/first-post.html">First Post</a></h1>
+                    <h1 class="entry-title"><a href="https://niko79542.github.io/thanksgiving.html">Analysis of Thanksgiving Dinner; Who ate the tofurkey?</a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2017-01-05T16:16:00-08:00">
-                Published: Thu 05 January 2017
+        <abbr class="published" title="2017-01-14T17:25:00-08:00">
+                Published: Sat 14 January 2017
         </abbr>
 
         <address class="vcard author">
@@ -1009,7 +1009,72 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="First-post!">First post!<a class="anchor-link" href="#First-post!">¶</a></h1><p>This will be the first post in our new Pelican blog! You can add any code or markdown cells to this Jupyter notebook, and they will be rendered on your blog.</p>
+<h1 id="Analyzing-Thanksgiving-Dinner:-Who-ate-the-Tofurkey?">Analyzing Thanksgiving Dinner: Who ate the Tofurkey?<a class="anchor-link" href="#Analyzing-Thanksgiving-Dinner:-Who-ate-the-Tofurkey?">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>coming from ruby.
+python, ruby symilarities.<br>
+python libraries
+numpy ==> pandas
+analyze thanksgiving data from x</br></p>
+<ul>
+<li>Figure out the most common dessert people eat.</li>
+<li><p>Figure out the most common complete meal people eat.</p>
+</li>
+<li><p>Regoinal patterns in working black friday, retail.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>  
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"thanksgiving.csv"</span><span class="p">,</span> 
+                   <span class="n">encoding</span><span class="o">=</span><span class="s2">"Latin-1"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Remove-responses-from-people-who-are-not-celebrating-the-holiday:">Remove responses from people who are not celebrating the holiday:<a class="anchor-link" href="#Remove-responses-from-people-who-are-not-celebrating-the-holiday:">¶</a></h2>
 </div>
 </div>
 </div>
@@ -1018,19 +1083,44 @@ h6:hover .anchor-link {
 <div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
-
-<span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">is_american</span> <span class="o">=</span> <span class="s1">'Do you celebrate Thanksgiving?'</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">is_american</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>4</pre>
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Yes    980
+No      78
+Name: Do you celebrate Thanksgiving?, dtype: int64
+</pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">america_bool</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">is_american</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Yes"</span>
+<span class="n">americans</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">america_bool</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
 </div>
 </div>
 </div>
@@ -1040,89 +1130,791 @@ h6:hover .anchor-link {
 <div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="o">%</span><span class="k">matplotlib</span> inline
-
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">main_dish</span> <span class="o">=</span> <span class="s2">"What is typically the main dish at your Thanksgiving dinner?"</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">americans</span><span class="p">[</span><span class="n">main_dish</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>(array([ 2.,  1.,  1.,  0.,  2.,  0.,  1.,  0.,  0.,  2.]),
- array([  1. ,   1.9,   2.8,   3.7,   4.6,   5.5,   6.4,   7.3,   8.2,
-          9.1,  10. ]),
- <a list of 10 patch objects>)</pre>
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Turkey                    859
+Other (please specify)     35
+Ham/Pork                   29
+Tofurkey                   20
+Chicken                    12
+Roast beef                 11
+I don't know                5
+Turducken                   3
+Name: What is typically the main dish at your Thanksgiving dinner?, dtype: int64
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ate_gravy</span> <span class="o">=</span> <span class="s2">"Do you typically have gravy?"</span>
+<span class="n">tofurkey_eaters_bool</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">main_dish</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Tofurkey"</span>
+<span class="n">tofurkeyers</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">tofurkey_eaters_bool</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">apple_q</span> <span class="o">=</span> <span class="s2">"Which type of pie is typically served at your Thanksgiving dinner? Please select all that apply. - Apple"</span>
+<span class="n">pumpkin_q</span> <span class="o">=</span> <span class="s2">"Which type of pie is typically served at your Thanksgiving dinner? Please select all that apply. - Pumpkin"</span>
+<span class="n">pecan_q</span> <span class="o">=</span> <span class="s2">"Which type of pie is typically served at your Thanksgiving dinner? Please select all that apply. - Pecan"</span>
+
+<span class="n">ate_apple</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">apple_q</span><span class="p">]</span>
+<span class="n">ate_pumpkin</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">pumpkin_q</span><span class="p">]</span>
+<span class="n">ate_pecan</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">pecan_q</span><span class="p">]</span>
+
+<span class="n">ate_pies</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">ate_apple</span><span class="p">)</span> <span class="o">&</span> 
+            <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">ate_pumpkin</span><span class="p">)</span> <span class="o">&</span> 
+            <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">ate_pecan</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">ate_pies</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>False    876
+True     104
+dtype: int64
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">convert_age</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="n">age</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">" "</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"+"</span><span class="p">,</span><span class="s2">""</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">americans</span><span class="p">[</span><span class="s2">"int_age"</span><span class="p">]</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="s2">"Age"</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">convert_age</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">americans</span><span class="p">[</span><span class="s2">"int_age"</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>count    947.000000
+mean      40.089757
+std       15.352014
+min       18.000000
+25%             NaN
+50%             NaN
+75%             NaN
+max       60.000000
+Name: int_age, dtype: float64
+</pre>
 </div>
 </div>
 <div class="output_area"><div class="prompt"></div>
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-">
-</img></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/home/niko/anaconda3/lib/python3.5/site-packages/ipykernel/__main__.py:1: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  if __name__ == '__main__':
+/home/niko/anaconda3/lib/python3.5/site-packages/numpy/lib/function_base.py:3834: RuntimeWarning: Invalid value encountered in percentile
+  RuntimeWarning)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Actual-ages-not-used">Actual ages not used<a class="anchor-link" href="#Actual-ages-not-used">¶</a></h1><h3 id="Age-responses-were-converted-from-ranges-to-numbers-for-simplicity.">Age responses were converted from ranges to numbers for simplicity.<a class="anchor-link" href="#Age-responses-were-converted-from-ranges-to-numbers-for-simplicity.">¶</a></h3><table>
+<thead><tr>
+<th>Original Range</th>
+<th>Age used for analysis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>18 - 29</td>
+<td>18</td>
+</tr>
+<tr>
+<td>30 - 44</td>
+<td>30</td>
+</tr>
+<tr>
+<td>45 - 59</td>
+<td>45</td>
+</tr>
+<tr>
+<td>60+</td>
+<td>60</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [9]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">convert_income</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="c1"># i.e. $10,000</span>
+    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span> 
+    
+    <span class="n">income</span> <span class="o">=</span> <span class="n">n</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">" "</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="n">income</span> <span class="o">==</span> <span class="s2">"Prefer"</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="n">income</span> <span class="o">=</span> <span class="n">income</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"$"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+    <span class="n">income</span> <span class="o">=</span> <span class="n">income</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">","</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">income</span><span class="p">)</span> <span class="c1">#==> 10000</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [10]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">income_q</span> <span class="o">=</span> <span class="s2">"How much total combined money did all members of your HOUSEHOLD earn last year?"</span>
+
+<span class="n">americans</span><span class="p">[</span><span class="s2">"int_income"</span><span class="p">]</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">income_q</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">convert_income</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">americans</span><span class="p">[</span><span class="n">income_q</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">americans</span><span class="p">[</span><span class="s2">"int_income"</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0      $75,000 to $99,999
+1      $50,000 to $74,999
+2            $0 to $9,999
+3         $200,000 and up
+4    $100,000 to $124,999
+5            $0 to $9,999
+6      $25,000 to $49,999
+7    Prefer not to answer
+Name: How much total combined money did all members of your HOUSEHOLD earn last year?, dtype: object
+0     75000.0
+1     50000.0
+2         0.0
+3    200000.0
+4    100000.0
+5         0.0
+6     25000.0
+7         NaN
+Name: int_income, dtype: float64
+</pre>
+</div>
+</div>
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/home/niko/anaconda3/lib/python3.5/site-packages/ipykernel/__main__.py:3: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  app.launch_new_instance()
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Not-a-true-depiction-of-incomes.">Not a true depiction of incomes.<a class="anchor-link" href="#Not-a-true-depiction-of-incomes.">¶</a></h1><h3 id="Income-responses-were-converted-from-ranges-to-numbers-for-simplicity.">Income responses were converted from ranges to numbers for simplicity.<a class="anchor-link" href="#Income-responses-were-converted-from-ranges-to-numbers-for-simplicity.">¶</a></h3><table>
+<thead><tr>
+<th>Original Income Range</th>
+<th>Income used for analysis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\$0</td>
+<td>\$0</td>
+</tr>
+<tr>
+<td>\$10,000 - \$24,000</td>
+<td>\$10,000</td>
+</tr>
+<tr>
+<td>\$25,000 - \$49,000</td>
+<td>\$25,000</td>
+</tr>
+<tr>
+<td>\$50,000 - \$74,999</td>
+<td>\$50,000</td>
+</tr>
+<tr>
+<td>\$75,000 - \$99,999</td>
+<td>\$75,000</td>
+</tr>
+<tr>
+<td>\$100,000 - \$124,999</td>
+<td>\$100,000</td>
+</tr>
+<tr>
+<td>\$125,000 - \$149,999</td>
+<td>\$125,000</td>
+</tr>
+<tr>
+<td>\$150,000 - \$174,999</td>
+<td>\$150,000</td>
+</tr>
+<tr>
+<td>\$175,000 - \$199,999</td>
+<td>\$175,000</td>
+</tr>
+<tr>
+<td>\$200,000+</td>
+<td>\$200,000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Seemingly-larger-number-of-responses-for-the-final-category--(\$200,000+)-is-just-because-it-covers-the-biggest-income-range.">Seemingly larger number of responses for the final category  (\$200,000+) is just because it covers the biggest income range.<a class="anchor-link" href="#Seemingly-larger-number-of-responses-for-the-final-category--(\$200,000+)-is-just-because-it-covers-the-biggest-income-range.">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead><tr>
+<th>Income</th>
+<th>Respondents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\$0</td>
+<td>52</td>
+</tr>
+<tr>
+<td>\$10,000</td>
+<td>60</td>
+</tr>
+<tr>
+<td>\$25,000</td>
+<td>166</td>
+</tr>
+<tr>
+<td>\$50,000</td>
+<td>127</td>
+</tr>
+<tr>
+<td>\$75,000</td>
+<td>127</td>
+</tr>
+<tr>
+<td>\$100,000</td>
+<td>109</td>
+</tr>
+<tr>
+<td>\$125,000</td>
+<td>48</td>
+</tr>
+<tr>
+<td>\$150,000</td>
+<td>38</td>
+</tr>
+<tr>
+<td>\$175,000</td>
+<td>26</td>
+</tr>
+<tr>
+<td>\$200,000</td>
+<td>76</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Calculate-breakdown-of-travel-by-Income">Calculate breakdown of travel by Income<a class="anchor-link" href="#Calculate-breakdown-of-travel-by-Income">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h6 id="First-create-a-pivot-table-broken-down-by-Travel-and-Income">First create a pivot table broken down by Travel and Income<a class="anchor-link" href="#First-create-a-pivot-table-broken-down-by-Travel-and-Income">¶</a></h6>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [11]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">travel_q</span> <span class="o">=</span> <span class="s2">"How far will you travel for Thanksgiving?"</span>
+<span class="n">index_id</span> <span class="o">=</span> <span class="s2">"RespondentID"</span>
+<span class="n">income</span> <span class="o">=</span> <span class="s2">"int_income"</span>
+<span class="n">no_travel</span> <span class="o">=</span> <span class="s2">"Thanksgiving is happening at my home--I won't travel at all"</span>
+
+
+<span class="n">travel_by_income</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">americans</span><span class="p">,</span> 
+                                  <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="n">index_id</span><span class="p">],</span> 
+                                  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="n">travel_q</span><span class="p">],</span>
+                                  <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">income</span><span class="p">],</span>
+                                  <span class="n">aggfunc</span><span class="o">=</span><span class="nb">len</span><span class="p">,</span> <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># next calculate percentabes by value </span>
+
+<span class="n">travel_by_income_as_pct</span> <span class="o">=</span> <span class="n">travel_by_income</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">travel_by_income</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">pct_no_travel</span> <span class="o">=</span> <span class="n">travel_by_income_as_pct</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">no_travel</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pct_travel</span> <span class="o">=</span> <span class="n">travel_by_income_as_pct</span><span class="p">[</span><span class="s2">"travelled"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pct_no_travel</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pct_travel</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">income_cutoff</span> <span class="o">=</span> <span class="mi">50000</span>
+
+
+<span class="n">travel_q</span> <span class="o">=</span> <span class="s2">"How far will you travel for Thanksgiving?"</span>
+<span class="n">low_income_bool</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="s2">"int_income"</span><span class="p">]</span> <span class="o"><</span> <span class="n">income_cutoff</span> 
+<span class="n">low_income</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">low_income_bool</span><span class="p">]</span>
+
+<span class="n">low_income_travel</span> <span class="o">=</span> <span class="n">low_income</span><span class="p">[</span><span class="n">travel_q</span><span class="p">]</span>
+<span class="n">low_income_travel_breakdown</span> <span class="o">=</span> <span class="n">low_income_travel</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Calculate-breakdown-of-travel-for-High-Income-households">Calculate breakdown of travel for High Income households<a class="anchor-link" href="#Calculate-breakdown-of-travel-for-High-Income-households">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">high_income_bool</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="s2">"int_income"</span><span class="p">]</span> <span class="o">>=</span> <span class="n">income_cutoff</span> 
+<span class="n">high_income</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">high_income_bool</span><span class="p">]</span> 
+
+<span class="n">high_income_travel_breakdown</span> <span class="o">=</span> <span class="n">high_income</span><span class="p">[</span><span class="n">travel_q</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Test-the-hypothesis-that-low-income-earners-are-more-likely-to-travel-due-to-them-travelling-to-their-parents-house">Test the hypothesis that low income earners are more likely to travel due to them travelling to their parents house<a class="anchor-link" href="#Test-the-hypothesis-that-low-income-earners-are-more-likely-to-travel-due-to-them-travelling-to-their-parents-house">¶</a></h5>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">no_travel</span> <span class="o">=</span> <span class="s2">"Thanksgiving is happening at my home--I won't travel at all"</span>
+
+
+<span class="n">pct_low_no_travel</span> <span class="o">=</span> <span class="n">pct_of_total</span><span class="p">(</span><span class="n">no_travel</span><span class="p">,</span>
+                                 <span class="n">high_income_travel_breakdown</span><span class="p">)</span>
+
+<span class="n">pct_low_travel</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">pct_low_no_travel</span>
+
+
+
+<span class="n">pct_high_no_travel</span> <span class="o">=</span> <span class="n">pct_of_total</span><span class="p">(</span><span class="n">no_travel</span><span class="p">,</span>
+                                  <span class="n">low_income_travel_breakdown</span><span class="p">)</span>
+
+<span class="n">pct_high_travel</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">pct_high_no_travel</span>
+
+<span class="n">high_over_low</span> <span class="o">=</span> <span class="n">pct_high_travel</span> <span class="o">/</span> <span class="n">pct_low_travel</span>
+
+
+<span class="nb">print</span><span class="p">((</span><span class="n">high_over_low</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Correlating-Travel-Distance-and-Income">Correlating Travel Distance and Income<a class="anchor-link" href="#Correlating-Travel-Distance-and-Income">¶</a></h1><p>It turns out it is the other way around.  High income households were 10% more likely to travel for thanksgiving than low income generators.</p>
+<p>Standard deviation analysis would tell us if this is significant or not.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Calculate-breakdown-of-travel-for-age-group">Calculate breakdown of travel for age group<a class="anchor-link" href="#Calculate-breakdown-of-travel-for-age-group">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">travel_by_age</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">americans</span><span class="p">,</span>
+                               <span class="n">index</span><span class="o">=</span><span class="n">travel_q</span><span class="p">,</span> 
+                               <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"int_age"</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Linking-Friendship-with-Age-and-Income">Linking Friendship with Age and Income<a class="anchor-link" href="#Linking-Friendship-with-Age-and-Income">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hometown_q</span> <span class="o">=</span> <span class="s2">"Have you ever tried to meet up with hometown friends on Thanksgiving night?"</span>
+<span class="n">friendsgiving_q</span> <span class="o">=</span> <span class="s1">'Have you ever attended a "Friendsgiving?"'</span>
+
+<span class="n">friendship_age</span> <span class="o">=</span> <span class="n">americans</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">hometown_q</span><span class="p">,</span> 
+                                       <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">friendsgiving_q</span><span class="p">],</span> 
+                                       <span class="n">values</span><span class="o">=</span><span class="s2">"int_age"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">friendship_age</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">friendship_income</span> <span class="o">=</span> <span class="n">americans</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">hometown_q</span><span class="p">,</span> 
+                                          <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">friendsgiving_q</span><span class="p">],</span> 
+                                          <span class="n">values</span><span class="o">=</span><span class="s2">"int_income"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">friendship_income</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="-"> <a class="anchor-link" href="#-">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
 </div>
 </div>
 </div>
