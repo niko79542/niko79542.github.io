@@ -1014,7 +1014,8 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Analyzing-Thanksgiving-Dinner:-Who-ate-the-Tofurkey?">Analyzing Thanksgiving Dinner: Who ate the Tofurkey?<a class="anchor-link" href="#Analyzing-Thanksgiving-Dinner:-Who-ate-the-Tofurkey?">¶</a></h1>
+<h2 id="The-Thanksgiving-data**">The Thanksgiving data**<a class="anchor-link" href="#The-Thanksgiving-data**">¶</a></h2><p>This data came from Five-Thirty-Eight's data repository. I give them full credit for the collection of the data.   <a href="https://github.com/fivethirtyeight/data/tree/master/thanksgiving-2015">https://github.com/fivethirtyeight/data/tree/master/thanksgiving-2015</a>)</p>
+<p>** <em>This data is no way representitive of the total US population.  Five-thirty-eight polled 1058 respondants on Nov 17th 2015.  Furthermore, due to small sample size, data is unlikely to be statistically significant.  This project was for learning purposes (NumPy, Pandas, Jupyter).  </em></p>
 </div>
 </div>
 </div>
@@ -1023,29 +1024,39 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>coming from ruby.
-python, ruby symilarities.<br>
-python libraries
-numpy ==> pandas
-analyze thanksgiving data from x</br></p>
+<h2 id="Goals">Goals<a class="anchor-link" href="#Goals">¶</a></h2><p><strong> Some important questions that we set out to answer during this project!</strong></p>
 <ul>
-<li>Figure out the most common dessert people eat.</li>
-<li><p>Figure out the most common complete meal people eat.</p>
-</li>
-<li><p>Regoinal patterns in working black friday, retail.</p>
-</li>
+<li>What is the most popular dish at Thanksgiving dinner?  What is the most popular meal?</li>
+<li>What percent of people pass on the pie during Thanksgiving?</li>
+<li>Is travel correlated with age or income?</li>
+<li>Is celebrating Friendsgiving correlated with age? </li>
 </ul>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Motivations">Motivations<a class="anchor-link" href="#Motivations">¶</a></h2><ul>
+<li><p>A large chunk of my work over the past 3 months has been focused on Ruby on Rails.  Python is syntactically very similar to Ruby.  Python and Ruby are both high level languages.</p>
+</li>
+<li><p>Python gives us access different libraries for Data Analysis, which makes it an attractive language to pick up to use for Data Science.</p>
+</li>
+<li><p>In this post, we will explore Pandas and Numpy;  two cool libraries used for Data Analysis.</p>
+</li>
+</ul>
+<p><strong>Numpy:</strong></p>
+<ul>
+<li>Makes it easy to create and manupulate data stored in multi-dimensional arrays.</li>
+</ul>
+<p><strong>Pandas:</strong></p>
+<ul>
+<li>Build on top of numpy</li>
+<li>Flexibility to hold data of different types!</li>
+<li>Flexibility to deal with missing values.</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1121,18 +1132,7 @@ Name: Do you celebrate Thanksgiving?, dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In [5]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">main_dish</span> <span class="o">=</span> <span class="s2">"What is typically the main dish at your Thanksgiving dinner?"</span>
@@ -1160,9 +1160,40 @@ Name: What is typically the main dish at your Thanksgiving dinner?, dtype: int64
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Turkey-was-by-far-the-most-common-main-dish-in-Folk&#x27;s-Thanksgiving-Dinner">Turkey was by far the most common main dish in Folk's Thanksgiving Dinner<a class="anchor-link" href="#Turkey-was-by-far-the-most-common-main-dish-in-Folk&#x27;s-Thanksgiving-Dinner">¶</a></h2>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## Go here.  Main side dish.  Desert?</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ate_gravy</span> <span class="o">=</span> <span class="s2">"Do you typically have gravy?"</span>
@@ -1175,7 +1206,7 @@ Name: What is typically the main dish at your Thanksgiving dinner?, dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">apple_q</span> <span class="o">=</span> <span class="s2">"Which type of pie is typically served at your Thanksgiving dinner? Please select all that apply. - Apple"</span>
@@ -1221,18 +1252,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In [9]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">convert_age</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -1249,7 +1269,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">americans</span><span class="p">[</span><span class="s2">"int_age"</span><span class="p">]</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="s2">"Age"</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">convert_age</span><span class="p">)</span>
@@ -1274,18 +1294,27 @@ Name: int_age, dtype: float64
 </pre>
 </div>
 </div>
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/home/niko/anaconda3/lib/python3.5/site-packages/ipykernel/__main__.py:1: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
-  if __name__ == '__main__':
-/home/niko/anaconda3/lib/python3.5/site-packages/numpy/lib/function_base.py:3834: RuntimeWarning: Invalid value encountered in percentile
-  RuntimeWarning)
-</pre>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
 </div>
 </div>
 </div>
@@ -1336,7 +1365,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In [11]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">convert_income</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="c1"># i.e. $10,000</span>
@@ -1359,53 +1388,24 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In [12]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">income_q</span> <span class="o">=</span> <span class="s2">"How much total combined money did all members of your HOUSEHOLD earn last year?"</span>
 
 <span class="n">americans</span><span class="p">[</span><span class="s2">"int_income"</span><span class="p">]</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">income_q</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">convert_income</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">americans</span><span class="p">[</span><span class="n">income_q</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">americans</span><span class="p">[</span><span class="s2">"int_income"</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>0      $75,000 to $99,999
-1      $50,000 to $74,999
-2            $0 to $9,999
-3         $200,000 and up
-4    $100,000 to $124,999
-5            $0 to $9,999
-6      $25,000 to $49,999
-7    Prefer not to answer
-Name: How much total combined money did all members of your HOUSEHOLD earn last year?, dtype: object
-0     75000.0
-1     50000.0
-2         0.0
-3    200000.0
-4    100000.0
-5         0.0
-6     25000.0
-7         NaN
-Name: int_income, dtype: float64
-</pre>
 </div>
-</div>
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/home/niko/anaconda3/lib/python3.5/site-packages/ipykernel/__main__.py:3: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
-  app.launch_new_instance()
-</pre>
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
 </div>
 </div>
 </div>
@@ -1549,7 +1549,18 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Calculate-breakdown-of-travel-by-Income">Calculate breakdown of travel by Income<a class="anchor-link" href="#Calculate-breakdown-of-travel-by-Income">¶</a></h2>
+<h2 id="Calculate-breakdown-of-travel-by-Income">Calculate breakdown of travel by Income<a class="anchor-link" href="#Calculate-breakdown-of-travel-by-Income">¶</a></h2><h5 id="Test-the-hypothesis-that-low-income-earners-are-more-likely-to-travel-due-to-them-travelling-to-their-parents-house">Test the hypothesis that low income earners are more likely to travel due to them travelling to their parents house<a class="anchor-link" href="#Test-the-hypothesis-that-low-income-earners-are-more-likely-to-travel-due-to-them-travelling-to-their-parents-house">¶</a></h5>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -1564,7 +1575,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">travel_q</span> <span class="o">=</span> <span class="s2">"How far will you travel for Thanksgiving?"</span>
@@ -1601,42 +1612,34 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pct_travel</span> <span class="o">=</span> <span class="n">travel_by_income_as_pct</span><span class="p">[</span><span class="s2">"travelled"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pct_no_travel</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pct_travel</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pct_no_travel</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">pct_travel</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>              int_income
+RespondentID  0.0           0.596154
+              10000.0       0.583333
+              25000.0       0.638554
+              50000.0       0.677165
+              75000.0       0.543307
+              100000.0      0.541284
+              125000.0      0.458333
+              150000.0      0.552632
+              175000.0      0.576923
+              200000.0      0.500000
+              All           0.581423
+Name: Thanksgiving is happening at my home--I won't travel at all, dtype: float64
+</pre>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">income_cutoff</span> <span class="o">=</span> <span class="mi">50000</span>
-
-
-<span class="n">travel_q</span> <span class="o">=</span> <span class="s2">"How far will you travel for Thanksgiving?"</span>
-<span class="n">low_income_bool</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="s2">"int_income"</span><span class="p">]</span> <span class="o"><</span> <span class="n">income_cutoff</span> 
-<span class="n">low_income</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">low_income_bool</span><span class="p">]</span>
-
-<span class="n">low_income_travel</span> <span class="o">=</span> <span class="n">low_income</span><span class="p">[</span><span class="n">travel_q</span><span class="p">]</span>
-<span class="n">low_income_travel_breakdown</span> <span class="o">=</span> <span class="n">low_income_travel</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
 </div>
 </div>
 </div>
@@ -1658,78 +1661,6 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Calculate-breakdown-of-travel-for-High-Income-households">Calculate breakdown of travel for High Income households<a class="anchor-link" href="#Calculate-breakdown-of-travel-for-High-Income-households">¶</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">high_income_bool</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="s2">"int_income"</span><span class="p">]</span> <span class="o">>=</span> <span class="n">income_cutoff</span> 
-<span class="n">high_income</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">high_income_bool</span><span class="p">]</span> 
-
-<span class="n">high_income_travel_breakdown</span> <span class="o">=</span> <span class="n">high_income</span><span class="p">[</span><span class="n">travel_q</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h5 id="Test-the-hypothesis-that-low-income-earners-are-more-likely-to-travel-due-to-them-travelling-to-their-parents-house">Test the hypothesis that low income earners are more likely to travel due to them travelling to their parents house<a class="anchor-link" href="#Test-the-hypothesis-that-low-income-earners-are-more-likely-to-travel-due-to-them-travelling-to-their-parents-house">¶</a></h5>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">no_travel</span> <span class="o">=</span> <span class="s2">"Thanksgiving is happening at my home--I won't travel at all"</span>
-
-
-<span class="n">pct_low_no_travel</span> <span class="o">=</span> <span class="n">pct_of_total</span><span class="p">(</span><span class="n">no_travel</span><span class="p">,</span>
-                                 <span class="n">high_income_travel_breakdown</span><span class="p">)</span>
-
-<span class="n">pct_low_travel</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">pct_low_no_travel</span>
-
-
-
-<span class="n">pct_high_no_travel</span> <span class="o">=</span> <span class="n">pct_of_total</span><span class="p">(</span><span class="n">no_travel</span><span class="p">,</span>
-                                  <span class="n">low_income_travel_breakdown</span><span class="p">)</span>
-
-<span class="n">pct_high_travel</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">pct_high_no_travel</span>
-
-<span class="n">high_over_low</span> <span class="o">=</span> <span class="n">pct_high_travel</span> <span class="o">/</span> <span class="n">pct_low_travel</span>
-
-
-<span class="nb">print</span><span class="p">((</span><span class="n">high_over_low</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1751,19 +1682,55 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Correlating-Travel-Distance-and-Income">Correlating Travel Distance and Income<a class="anchor-link" href="#Correlating-Travel-Distance-and-Income">¶</a></h1><p>It turns out it is the other way around.  High income households were 10% more likely to travel for thanksgiving than low income generators.</p>
-<p>Standard deviation analysis would tell us if this is significant or not.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
+<table>
+<thead><tr>
+<th>Income</th>
+<th>Percent of Income Group who Travel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\$10,000</td>
+<td>58%</td>
+</tr>
+<tr>
+<td>\$25,000</td>
+<td>64%</td>
+</tr>
+<tr>
+<td>\$50,000</td>
+<td>68%</td>
+</tr>
+<tr>
+<td>\$75,000</td>
+<td>54%</td>
+</tr>
+<tr>
+<td>\$100,000</td>
+<td>54%</td>
+</tr>
+<tr>
+<td>\$125,000</td>
+<td>46%</td>
+</tr>
+<tr>
+<td>\$150,000</td>
+<td>55%</td>
+</tr>
+<tr>
+<td>\$175,000</td>
+<td>58%</td>
+</tr>
+<tr>
+<td>\$200,000</td>
+<td>50%</td>
+</tr>
+<tr>
+<td>All</td>
+<td>58%</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -1772,19 +1739,84 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Calculate-breakdown-of-travel-for-age-group">Calculate breakdown of travel for age group<a class="anchor-link" href="#Calculate-breakdown-of-travel-for-age-group">¶</a></h2>
+<h4 id="Without-performing-Statistical-Analysis-on-the-Data,-it-is-hard-to-say-if-these-numbers-are-significant.">Without performing Statistical Analysis on the Data, it is hard to say if these numbers are significant.<a class="anchor-link" href="#Without-performing-Statistical-Analysis-on-the-Data,-it-is-hard-to-say-if-these-numbers-are-significant.">¶</a></h4><ul>
+<li>On average, 58% of people travelled during thanksgiving. </li>
+<li>On average, the $10k, $25k, and $50k income grous travelled 58%, 64%, and 68% of the time respectively.  </li>
+<li>All of these buckets were above average.  </li>
+<li>Again - Can't yet tell if these numbers are significant. </li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Calculate-breakdown-of-travel-for-age-group">Calculate breakdown of travel for age group<a class="anchor-link" href="#Calculate-breakdown-of-travel-for-age-group">¶</a></h2><h4 id="Let&#x27;s-look-at-the-same-question,-but-for-age-group.">Let's look at the same question, but for age group.<a class="anchor-link" href="#Let&#x27;s-look-at-the-same-question,-but-for-age-group.">¶</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">travel_by_age</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">americans</span><span class="p">,</span>
-                               <span class="n">index</span><span class="o">=</span><span class="n">travel_q</span><span class="p">,</span> 
-                               <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"int_age"</span><span class="p">])</span>
+                               <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="n">index_id</span><span class="p">],</span>
+                               <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="n">travel_q</span><span class="p">],</span> 
+                               <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"int_age"</span><span class="p">],</span>
+                               <span class="n">aggfunc</span><span class="o">=</span><span class="nb">len</span><span class="p">,</span>
+                               <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [16]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">travel_by_age</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>                                                   RespondentID                \
+int_age                                                    18.0   30.0   45.0   
+How far will you travel for Thanksgiving?                                       
+Thanksgiving is happening at my home--I won't t...         59.0   90.0  122.0   
+Thanksgiving is local--it will take place in th...         55.0   77.0   71.0   
+Thanksgiving is out of town and far away--I hav...         15.0   20.0   31.0   
+Thanksgiving is out of town but not too far--it...         56.0   48.0   45.0   
+All                                                       185.0  235.0  269.0   
+
+                                                                  
+int_age                                              60.0    All  
+How far will you travel for Thanksgiving?                         
+Thanksgiving is happening at my home--I won't t...  123.0  394.0  
+Thanksgiving is local--it will take place in th...   72.0  275.0  
+Thanksgiving is out of town and far away--I hav...   16.0   82.0  
+Thanksgiving is out of town but not too far--it...   47.0  196.0  
+All                                                 258.0  947.0  
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -1841,7 +1873,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">hometown_q</span> <span class="o">=</span> <span class="s2">"Have you ever tried to meet up with hometown friends on Thanksgiving night?"</span>
@@ -1856,6 +1888,19 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </div>
 </div>
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Have you ever attended a "Friendsgiving?"                  No        Yes
+Have you ever tried to meet up with hometown fr...                      
+No                                                  42.283702  37.010526
+Yes                                                 41.475410  33.976744
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1881,7 +1926,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In [18]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">friendship_income</span> <span class="o">=</span> <span class="n">americans</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">hometown_q</span><span class="p">,</span> 
@@ -1892,13 +1937,36 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </div>
 </div>
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Have you ever attended a "Friendsgiving?"                     No           Yes
+Have you ever tried to meet up with hometown fr...                            
+No                                                  78914.549654  72894.736842
+Yes                                                 78750.000000  66019.736842
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="-"> <a class="anchor-link" href="#-">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
 </div>
 </div>
 </div>
