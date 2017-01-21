@@ -20,14 +20,12 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),
-         ('You can modify those links in your config file', '#'),)
+LINKS = (('Home', 'http://www.nikoskoularikis.com/#/portfolio'),
+         ('Resume', 'https://res.cloudinary.com/dlpclqzwk/image/upload/v1483140920/20161120_Front_End_Res_op0ktw.pdf'),)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (('Linkedin', 'https://www.linkedin.com/in/nikos1'),
+          ('Another social link', 'https://github.com/niko79542'),)
 
 DEFAULT_PAGINATION = 10
 
