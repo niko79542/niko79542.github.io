@@ -25,7 +25,7 @@ LINKS = (('Home', 'http://www.nikoskoularikis.com/#/portfolio'),
 
 # Social widget
 SOCIAL = (('Linkedin', 'https://www.linkedin.com/in/nikos1'),
-          ('Another social link', 'https://github.com/niko79542'),)
+          ('Github', 'https://github.com/niko79542'),)
 
 DEFAULT_PAGINATION = 10
 
