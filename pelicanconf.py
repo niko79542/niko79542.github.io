@@ -29,6 +29,11 @@ SOCIAL = (('Linkedin', 'https://www.linkedin.com/in/nikos1'),
 
 DEFAULT_PAGINATION = 10
 
+# USE THEME
+
+THEME = "/home/niko/Documents/blog_extra/pelican-themes/blue-penguin-c5e23e7753367b5beacce87b732cd1567c4818f9"
+
+
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
 
