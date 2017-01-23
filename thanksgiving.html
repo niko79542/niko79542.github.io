@@ -1024,24 +1024,13 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Goals">Goals<a class="anchor-link" href="#Goals">¶</a></h2><p><strong> Some important questions that we set out to answer during this project!</strong></p>
+<h2 id="Goals">Goals<a class="anchor-link" href="#Goals">¶</a></h2><p><strong> Some questions that we set out to answer during this project!</strong></p>
 <ul>
 <li>What is the most popular dish at Thanksgiving dinner?  What is the most popular meal?</li>
-<li>What percent of people don't have pie during Thanksgiving?</li>
+<li>Tofurkey is a main thanksgiving dish comprised of both Tofu and Turkey.  What are the main side dishes that tofurkey eaters have during the holiday?</li>
 <li>Is travel correlated with age or income?</li>
 <li>Is celebrating Friendsgiving correlated with age? </li>
 </ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -1068,28 +1057,6 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 <div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
 <div class="input_area">
@@ -1097,17 +1064,6 @@ h6:hover .anchor-link {
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"thanksgiving.csv"</span><span class="p">,</span> 
                    <span class="n">encoding</span><span class="o">=</span><span class="s2">"Latin-1"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 </div>
 </div>
@@ -1232,115 +1188,60 @@ Name: Do you celebrate Thanksgiving?, dtype: int64
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h5 id="Side-Dish">Side Dish<a class="anchor-link" href="#Side-Dish">¶</a></h5>
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [20]:</div>
+<div class="prompt input_prompt">In [5]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Use regex to select columns pertaining to side dishes</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="c1"># create a small MaxSideDish module that calculates most popular side dishes based on a food selector.</span>
+<span class="c1"># We can use this module for side dishes, desserts, and pie!</span>
 
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="c1">#ok</span>
-<span class="k">def</span> <span class="nf">filter_names</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">dish_type</span><span class="p">):</span>
-    <span class="n">regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">dish_type</span><span class="p">)</span><span class="o">.</span><span class="n">search</span>
-    <span class="k">return</span> <span class="p">[</span> <span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">list</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="p">(</span><span class="n">regex</span><span class="p">(</span><span class="n">name</span><span class="p">),)</span> <span class="k">if</span> <span class="n">m</span> <span class="p">]</span>
-
-<span class="n">col_names</span> <span class="o">=</span> <span class="n">americans</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span>
-<span class="n">side_dish_names</span> <span class="o">=</span> <span class="n">filter_names</span><span class="p">(</span><span class="n">col_names</span><span class="p">,</span><span class="s1">'side dishes'</span><span class="p">)</span>
-
-<span class="c1"># Create new dataframe to analyze side dishes.</span>
-
-<span class="n">side_dishes</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">side_dish_names</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-
-<span class="c1"># Use regex to shorten column names</span>
-<span class="c1">#ok</span>
-<span class="k">def</span> <span class="nf">shorten_list</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span><span class="nb">filter</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">[</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">list</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">l</span><span class="p">),)</span> <span class="k">if</span> <span class="n">m</span><span class="p">]</span>
-
-<span class="n">searchRegex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">'(?<= - ).*'</span><span class="p">)</span><span class="o">.</span><span class="n">search</span>
-<span class="n">short_dishes</span> <span class="o">=</span> <span class="n">shorten_list</span><span class="p">(</span><span class="n">side_dish_names</span><span class="p">,</span><span class="n">searchRegex</span><span class="p">)</span>
-
-<span class="n">side_dishes</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">short_dishes</span> 
-
-<span class="c1"># most_common_sides = {}</span>
-<span class="c1"># for food in side_dishes.columns:</span>
-<span class="c1">#     count_food = side_dishes[food].value_counts()</span>
-<span class="c1">#     most_common_sides[food] = count_food.max()</span>
+<span class="k">class</span> <span class="nc">MaxSideDish</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">col_name</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">col_name</span> <span class="o">=</span> <span class="n">col_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span>
+        
+        <span class="c1"># Which columns from the dataframe (df) match the col_name in question.  </span>
+        <span class="c1"># (i.e. with "side dishes" as col_name, match all columns that mention side dishes)</span>
+        <span class="c1">#</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filter_names</span><span class="p">()</span>
+        
+        <span class="c1"># create new dataframe, col_dishes, that contain all columns that match our col_name attribute</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">col_dishes</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">food_names</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> 
+        
+        
+        <span class="c1"># Use regex to shorten column names</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shorten_list</span><span class="p">()</span>
+        
+        <span class="c1"># Find count of food per column</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aggregate_food_counts</span><span class="p">()</span>
+        
+        <span class="c1">#Find food with max count</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">most_common_side</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">most_common_sides</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">most_common_sides</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
     
-<span class="k">def</span> <span class="nf">aggregate_food_counts</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-    <span class="n">most_common_foods</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">food</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-        <span class="n">count_food</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">food</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-        <span class="n">most_common_foods</span><span class="p">[</span><span class="n">food</span><span class="p">]</span> <span class="o">=</span> <span class="n">count_food</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">filter_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">col_name</span><span class="p">)</span><span class="o">.</span><span class="n">search</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">food_names</span> <span class="o">=</span> <span class="p">[</span> <span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="p">(</span><span class="n">regex</span><span class="p">(</span><span class="n">name</span><span class="p">),)</span> <span class="k">if</span> <span class="n">m</span> <span class="p">]</span>
     
-    <span class="k">return</span> <span class="n">most_common_foods</span>
+    <span class="k">def</span> <span class="nf">shorten_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="nb">filter</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">'(?<= - ).*'</span><span class="p">)</span><span class="o">.</span><span class="n">search</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">short_names</span> <span class="o">=</span> <span class="p">[</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">food_names</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">l</span><span class="p">),)</span> <span class="k">if</span> <span class="n">m</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">col_dishes</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">short_names</span>
+    
+        
+    <span class="k">def</span> <span class="nf">aggregate_food_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">most_common_sides</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">food</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_dishes</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">count_food</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_dishes</span><span class="p">[</span><span class="n">food</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+            <span class="n">max_food_count</span> <span class="o">=</span> <span class="n">count_food</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">max_food_count</span><span class="p">):</span>
+                <span class="n">most_common_sides</span><span class="p">[</span><span class="n">food</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_food_count</span>
 
-<span class="n">most_common_sides</span> <span class="o">=</span> <span class="n">aggregate_food_counts</span><span class="p">(</span><span class="n">side_dishes</span><span class="p">)</span>
-
-<span class="n">best_side_dish</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">most_common_sides</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">most_common_sides</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
-<span class="n">best_side_dish</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>'Mashed potatoes'</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">most_common_sides</span> <span class="o">=</span> <span class="n">most_common_sides</span>
 </pre></div>
 </div>
 </div>
@@ -1362,19 +1263,19 @@ Name: Do you celebrate Thanksgiving?, dtype: int64
 <div class="prompt input_prompt">In [6]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">##### The most common side dish reported was mashed potatoes</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">side_dishes</span> <span class="o">=</span> <span class="n">MaxSideDish</span><span class="p">(</span><span class="s2">"side dishes"</span><span class="p">,</span> <span class="n">americans</span><span class="p">)</span>
+
+<span class="n">side_dishes</span><span class="o">.</span><span class="n">most_common_side</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>'Mashed potatoes'</pre>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
 </div>
 </div>
 </div>
@@ -1384,10 +1285,18 @@ Name: Do you celebrate Thanksgiving?, dtype: int64
 <div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ate_gravy</span> <span class="o">=</span> <span class="s2">"Do you typically have gravy?"</span>
-<span class="n">tofurkey_eaters_bool</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">main_dish</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Tofurkey"</span>
-<span class="n">tofurkeyers</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">tofurkey_eaters_bool</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pie</span> <span class="o">=</span> <span class="n">MaxSideDish</span><span class="p">(</span><span class="s2">"type of pie"</span><span class="p">,</span> <span class="n">americans</span><span class="p">)</span>
+<span class="n">pie</span><span class="o">.</span><span class="n">most_common_side</span>
 </pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>'Pumpkin'</pre>
+</div>
 </div>
 </div>
 </div>
@@ -1397,19 +1306,89 @@ Name: Do you celebrate Thanksgiving?, dtype: int64
 <div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">apple_q</span> <span class="o">=</span> <span class="s2">"Which type of pie is typically served at your Thanksgiving dinner? Please select all that apply. - Apple"</span>
-<span class="n">pumpkin_q</span> <span class="o">=</span> <span class="s2">"Which type of pie is typically served at your Thanksgiving dinner? Please select all that apply. - Pumpkin"</span>
-<span class="n">pecan_q</span> <span class="o">=</span> <span class="s2">"Which type of pie is typically served at your Thanksgiving dinner? Please select all that apply. - Pecan"</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">desserts</span> <span class="o">=</span> <span class="n">MaxSideDish</span><span class="p">(</span><span class="s2">"dessert"</span><span class="p">,</span> <span class="n">americans</span><span class="p">)</span>
+<span class="n">desserts</span><span class="o">.</span><span class="n">most_common_side</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>'None'</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Dessert-has-&#x27;None&#x27;-as-most-common.">Dessert has 'None' as most common.<a class="anchor-link" href="#Dessert-has-&#x27;None&#x27;-as-most-common.">¶</a></h3><h5 id="Let&#x27;s-take-a-look-at-the-breakdown-for-dessert-to-get-a-larger-picture.">Let's take a look at the breakdown for dessert to get a larger picture.<a class="anchor-link" href="#Let&#x27;s-take-a-look-at-the-breakdown-for-dessert-to-get-a-larger-picture.">¶</a></h5>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [9]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">desserts</span><span class="o">.</span><span class="n">most_common_sides</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>{'Apple cobbler': 110,
+ 'Blondies': 16,
+ 'Brownies': 128,
+ 'Carrot cake': 72,
+ 'Cheesecake': 191,
+ 'Cookies': 204,
+ 'Fudge': 43,
+ 'Ice cream': 266,
+ 'None': 295,
+ 'Other (please specify)': 134,
+ 'Other (please specify).1': 13,
+ 'Peach cobbler': 103}</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Ice-cream-is-the-second-most-common-dessert,-behind-None&#x27;">Ice cream is the second most common dessert, behind None'<a class="anchor-link" href="#Ice-cream-is-the-second-most-common-dessert,-behind-None&#x27;">¶</a></h5>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [10]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tofurkey_eaters_bool</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">main_dish</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Tofurkey"</span>
+<span class="c1"># Who ate the tofurkey?</span>
+<span class="n">tofurkeyers</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">tofurkey_eaters_bool</span><span class="p">]</span>
 
-<span class="n">ate_apple</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">apple_q</span><span class="p">]</span>
-<span class="n">ate_pumpkin</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">pumpkin_q</span><span class="p">]</span>
-<span class="n">ate_pecan</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">pecan_q</span><span class="p">]</span>
+<span class="c1"># What were the most popular side dish, pie, and dessert of tofurkey eaters?</span>
+<span class="n">tofu_and_pie</span> <span class="o">=</span> <span class="n">MaxSideDish</span><span class="p">(</span><span class="s2">"type of pie"</span><span class="p">,</span> <span class="n">tofurkeyers</span><span class="p">)</span>
+<span class="n">tofu_and_dessert</span> <span class="o">=</span> <span class="n">MaxSideDish</span><span class="p">(</span><span class="s2">"dessert"</span><span class="p">,</span> <span class="n">tofurkeyers</span><span class="p">)</span>
+<span class="n">tofu_and_side_dish</span> <span class="o">=</span> <span class="n">MaxSideDish</span><span class="p">(</span><span class="s2">"side dishes"</span><span class="p">,</span> <span class="n">tofurkeyers</span><span class="p">)</span>
 
-<span class="n">ate_pies</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">ate_apple</span><span class="p">)</span> <span class="o">&</span> 
-            <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">ate_pumpkin</span><span class="p">)</span> <span class="o">&</span> 
-            <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">ate_pecan</span><span class="p">))</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">ate_pies</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"There were </span><span class="si">{}</span><span class="s2"> tofurkey eaters</span><span class="se">\n</span><span class="s2">Their favorite side dish was </span><span class="si">{}</span><span class="se">\n</span><span class="s2">Their favorite pie was </span><span class="si">{}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">Their favorite dessert was </span><span class="si">{}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tofurkeyers</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>
+                <span class="n">tofu_and_pie</span><span class="o">.</span><span class="n">most_common_side</span><span class="p">,</span>
+                <span class="n">tofu_and_dessert</span><span class="o">.</span><span class="n">most_common_side</span><span class="p">,</span>
+                <span class="n">tofu_and_side_dish</span><span class="o">.</span><span class="n">most_common_side</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1418,9 +1397,11 @@ Name: Do you celebrate Thanksgiving?, dtype: int64
 <div class="output">
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>False    876
-True     104
-dtype: int64
+<pre>There were 20 tofurkey eaters
+Their favorite side dish was Pumpkin
+Their favorite pie was Ice cream.
+Their favorite dessert was Mashed potatoes.
+
 </pre>
 </div>
 </div>
@@ -1429,18 +1410,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In [11]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">convert_age</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -1457,7 +1427,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In [12]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">americans</span><span class="p">[</span><span class="s2">"int_age"</span><span class="p">]</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="s2">"Age"</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">convert_age</span><span class="p">)</span>
@@ -1481,28 +1451,6 @@ max       60.000000
 Name: int_age, dtype: float64
 </pre>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
 </div>
 </div>
 </div>
@@ -1542,18 +1490,7 @@ Name: int_age, dtype: float64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">convert_income</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="c1"># i.e. $10,000</span>
@@ -1576,23 +1513,12 @@ Name: int_age, dtype: float64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">income_q</span> <span class="o">=</span> <span class="s2">"How much total combined money did all members of your HOUSEHOLD earn last year?"</span>
 
 <span class="n">americans</span><span class="p">[</span><span class="s2">"int_income"</span><span class="p">]</span> <span class="o">=</span> <span class="n">americans</span><span class="p">[</span><span class="n">income_q</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">convert_income</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 </div>
 </div>
@@ -1721,34 +1647,12 @@ Name: int_age, dtype: float64
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Calculate-breakdown-of-travel-by-Income">Calculate breakdown of travel by Income<a class="anchor-link" href="#Calculate-breakdown-of-travel-by-Income">¶</a></h2><h5 id="Test-the-hypothesis-that-low-income-earners-are-more-likely-to-travel-due-to-them-travelling-to-their-parents-house">Test the hypothesis that low income earners are more likely to travel due to them travelling to their parents house<a class="anchor-link" href="#Test-the-hypothesis-that-low-income-earners-are-more-likely-to-travel-due-to-them-travelling-to-their-parents-house">¶</a></h5>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -1763,7 +1667,7 @@ Name: int_age, dtype: float64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">travel_q</span> <span class="o">=</span> <span class="s2">"How far will you travel for Thanksgiving?"</span>
@@ -1789,18 +1693,7 @@ Name: int_age, dtype: float64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pct_travel</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pct_no_travel</span><span class="p">)</span>
@@ -1828,39 +1721,6 @@ RespondentID  0.0           0.596154
 Name: Thanksgiving is happening at my home--I won't travel at all, dtype: float64
 </pre>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
 </div>
 </div>
 </div>
@@ -1947,7 +1807,7 @@ Name: Thanksgiving is happening at my home--I won't travel at all, dtype: float6
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">travel_by_age</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">americans</span><span class="p">,</span>
@@ -1963,18 +1823,7 @@ Name: Thanksgiving is happening at my home--I won't travel at all, dtype: float6
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In [18]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">travel_by_age</span><span class="p">)</span>
@@ -2009,36 +1858,6 @@ All                                                 258.0  947.0
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -2050,18 +1869,7 @@ All                                                 258.0  947.0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In [19]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">hometown_q</span> <span class="o">=</span> <span class="s2">"Have you ever tried to meet up with hometown friends on Thanksgiving night?"</span>
@@ -2092,29 +1900,7 @@ Yes                                                 41.475410  33.976744
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In [20]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">friendship_income</span> <span class="o">=</span> <span class="n">americans</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">hometown_q</span><span class="p">,</span> 
@@ -2144,50 +1930,6 @@ Yes                                                 78750.000000  66019.736842
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
 </div>
 </div>
 </div>
