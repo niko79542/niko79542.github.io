@@ -31,7 +31,7 @@ DEFAULT_PAGINATION = 10
 
 # USE THEME
 
-THEME = "/home/niko/Documents/blog_extra/dev-random/"
+THEME = "/home/niko/Documents/blog_extra/pelican-themes/dev-random/"
 
 
 
