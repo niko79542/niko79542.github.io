@@ -20,21 +20,29 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = (('Home', 'http://www.nikoskoularikis.com/#/portfolio'),
-         ('Resume', 'https://res.cloudinary.com/dlpclqzwk/image/upload/v1483140920/20161120_Front_End_Res_op0ktw.pdf'),)
+
+# uncomment to bring back resume
+
+#LINKS = (
+#    ('Resume', 'https://res.cloudinary.com/dlpclqzwk/image/upload/v1485353466/20170124_Software_Engineer_lvzwbe.pdf'),
+#)
 
 # Social widget
-SOCIAL = (('Linkedin', 'https://www.linkedin.com/in/nikos1'),
-          ('Github', 'https://github.com/niko79542'),)
 
-DEFAULT_PAGINATION = 10
+ICONS = [
+    ('github', 'https://github.com/niko79542'),
+    ('linkedin', 'https://www.linkedin.com/in/nikos1'),
+    ('home', 'http://www.nikoskoularikis.com/#/portfolio'),
+]
+
+DEFAULT_PAGINATION = 5
 
 # USE THEME
 
 THEME = "/home/niko/Documents/blog_extra/pelican-themes/pelican-alchemy/alchemy/"
 THEME_COLOR = 'blue'
 SITEIMAGE = 'https://res.cloudinary.com/dlpclqzwk/image/upload/v1485353473/Selection_024_ybw4f6.png'
-SITESUBTITLE = 'A Data Science Learning Experience'
+SITESUBTITLE = 'A Data Science Learning Experience by Niko Skoularikis'
 
 HIDE_AUTHORS = True
 
