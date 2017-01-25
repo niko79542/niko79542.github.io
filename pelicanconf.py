@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Niko Skoularikis'
-SITENAME = 'How to Learn Data Science'
+SITENAME = 'Real Data Talk'
 SITEURL = ''
 
 PATH = 'content'
