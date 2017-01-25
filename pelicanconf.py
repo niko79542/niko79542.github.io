@@ -33,8 +33,6 @@ DEFAULT_PAGINATION = 10
 
 THEME = "/home/niko/Documents/blog_extra/pelican-themes/nice-blog/"
 THEME_COLOR = 'blue'
-SIDEBAR_DISPLAY = ['about', 'categories', 'tags']
-SIDEBAR_ABOUT = "Niko is a Software Engineer in the Bar Area"
 
 
 # Uncomment following line if you want document-relative URLs when developing
