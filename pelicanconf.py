@@ -33,7 +33,7 @@ DEFAULT_PAGINATION = 10
 
 THEME = "/home/niko/Documents/blog_extra/pelican-themes/pelican-alchemy/alchemy/"
 THEME_COLOR = 'blue'
-SITEIMAGE = '/home/niko/Desktop/blog/theme/images/Selection_024.png'
+SITEIMAGE = '/images/Selection_024.png width=200 height=200'
 SITESUBTITLE = 'A Data Science Learning Experience'
 
 HIDE_AUTHORS = True
