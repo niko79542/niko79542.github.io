@@ -31,8 +31,8 @@ DEFAULT_PAGINATION = 10
 
 # USE THEME
 
-# THEME = "/home/niko/Documents/blog_extra/pelican-themes/nice-blog/"
-# THEME_COLOR = 'blue'
+THEME = "/home/niko/Documents/blog_extra/pelican-themes/pelican-alchemy/alchemy/"
+THEME_COLOR = 'blue'
 
 
 # Uncomment following line if you want document-relative URLs when developing
