@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Real Data Talk</title><link href="https://niko79542.github.io/" rel="alternate"></link><link href="https://niko79542.github.io/feeds/posts.atom.xml" rel="self"></link><id>https://niko79542.github.io/</id><updated>2017-01-21T06:25:00-08:00</updated><entry><title>Change the Gun Deaths title. IT is easily googleable.</title><link href="https://niko79542.github.io/gun-deaths.html" rel="alternate"></link><published>2017-01-21T06:25:00-08:00</published><updated>2017-01-21T06:25:00-08:00</updated><author><name>Niko Skoularikis</name></author><id>tag:niko79542.github.io,2017-01-21:gun-deaths.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Real Data Talk</title><link href="https://niko79542.github.io/" rel="alternate"></link><link href="https://niko79542.github.io/feeds/posts.atom.xml" rel="self"></link><id>https://niko79542.github.io/</id><updated>2017-01-21T06:25:00-08:00</updated><entry><title>Exploring Gun Deaths in United States from 2012-2014</title><link href="https://niko79542.github.io/gun-deaths.html" rel="alternate"></link><published>2017-01-21T06:25:00-08:00</published><updated>2017-01-21T06:25:00-08:00</updated><author><name>Niko Skoularikis</name></author><id>tag:niko79542.github.io,2017-01-21:gun-deaths.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -976,8 +976,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Exploring-Gun-Deaths-in-United-States"&gt;Exploring Gun Deaths in United States&lt;a class="anchor-link" href="#Exploring-Gun-Deaths-in-United-States"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;h2 id="Gun-Deaths-in-the-US-from-2012-2014"&gt;Gun Deaths in the US from 2012-2014&lt;a class="anchor-link" href="#Gun-Deaths-in-the-US-from-2012-2014"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;h4 id="Data-is-taken-from-Five-Thirty-Eight"&gt;Data is taken from Five-Thirty-Eight&lt;a class="anchor-link" href="#Data-is-taken-from-Five-Thirty-Eight"&gt;¶&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;(&lt;a href="https://github.com/fivethirtyeight/guns-data"&gt;https://github.com/fivethirtyeight/guns-data&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;Read Data Analysis projects.&lt;/p&gt;
+&lt;h4 id="Data-is-taken-from-Five-Thirty-Eight"&gt;Data is taken from Five-Thirty-Eight&lt;a class="anchor-link" href="#Data-is-taken-from-Five-Thirty-Eight"&gt;¶&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;(&lt;a href="https://github.com/fivethirtyeight/guns-data"&gt;https://github.com/fivethirtyeight/guns-data&lt;/a&gt;)&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1075,7 +1074,16 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Very-little-change-in-number-of-gun-deaths-over-3-years."&gt;Very little change in number of gun deaths over 3 years.&lt;a class="anchor-link" href="#Very-little-change-in-number-of-gun-deaths-over-3-years."&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Very-little-change-in-number-of-gun-deaths-over-3-years.--Gun-deaths-from-2012-to-2014-ranged-from-33563-to-33599-deaths-per-year."&gt;Very little change in number of gun deaths over 3 years.  Gun deaths from 2012 to 2014 ranged from 33563 to 33599 deaths per year.&lt;a class="anchor-link" href="#Very-little-change-in-number-of-gun-deaths-over-3-years.--Gun-deaths-from-2012-to-2014-ranged-from-33563-to-33599-deaths-per-year."&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h5 id="Next,-use-the-datetime-module-to-convert-the-month-and-year-columns-into-an-easily-analyzable-datetime-object-column"&gt;Next, use the datetime module to convert the month and year columns into an easily analyzable datetime object column&lt;a class="anchor-link" href="#Next,-use-the-datetime-module-to-convert-the-month-and-year-columns-into-an-easily-analyzable-datetime-object-column"&gt;¶&lt;/a&gt;&lt;/h5&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1167,15 +1175,6 @@ h6:hover .anchor-link {
          datetime.datetime(2014, 12, 1, 0, 0): 2857})&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Visualize-the-data.--I-can&amp;#x27;t-understand-this."&gt;Visualize the data.  I can't understand this.&lt;a class="anchor-link" href="#Visualize-the-data.--I-can&amp;#x27;t-understand-this."&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
