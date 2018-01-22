@@ -42,7 +42,7 @@ DEFAULT_PAGINATION = 5
 THEME = "/home/niko/Documents/blog_extra/pelican-themes/pelican-alchemy/alchemy/"
 THEME_COLOR = 'blue'
 SITEIMAGE = 'https://res.cloudinary.com/dlpclqzwk/image/upload/v1485353473/Selection_024_ybw4f6.png'
-SITESUBTITLE = 'A Data Science Learning Experience by Niko Skoularikis'
+SITESUBTITLE = 'Machine Learning blog'
 
 HIDE_AUTHORS = True
 
