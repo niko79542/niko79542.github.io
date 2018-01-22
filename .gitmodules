@@ -1,3 +1,6 @@
 [submodule "plugins/ipynb"]
 	path = plugins/ipynb
 	url = git://github.com/danielfrg/pelican-ipynb.git
+[submodule "plugins/ipynb2"]
+	path = plugins/ipynb2
+	url = git://github.com/danielfrg/pelican-ipynb.git

@@ -1,0 +1,7 @@
+Title: IMDB Logistic Regression
+Slug: logistic
+Date: 2018-01-20 19:57
+Category: posts
+Tags: python
+Author: Niko Skoularikis
+Summary: Predicting sentiment of an IMDB review from presence of most frequent words.
