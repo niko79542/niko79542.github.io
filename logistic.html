@@ -33,7 +33,7 @@
     </div>
   <div class="col-sm-8">
     <h1 class="title"><a href="/">Real Data Talk</a></h1>
-      <p class="text-muted">A Data Science Learning Experience by Niko Skoularikis</p>
+      <p class="text-muted">Machine Learning blog</p>
       <ul class="list-inline">
           <li class="list-inline-item"><a class="fa fa-github" href="https://github.com/niko79542" target="_blank"></a></li>
           <li class="list-inline-item"><a class="fa fa-linkedin" href="https://www.linkedin.com/in/nikos1" target="_blank"></a></li>
@@ -70,116 +70,7 @@
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI escape sequences */
-/* The color values are a mix of
-   http://www.xcolors.net/dl/baskerville-ivorylight and
-   http://www.xcolors.net/dl/euphrasia */
-.ansi-black-fg {
-  color: #3E424D;
-}
-.ansi-black-bg {
-  background-color: #3E424D;
-}
-.ansi-black-intense-fg {
-  color: #282C36;
-}
-.ansi-black-intense-bg {
-  background-color: #282C36;
-}
-.ansi-red-fg {
-  color: #E75C58;
-}
-.ansi-red-bg {
-  background-color: #E75C58;
-}
-.ansi-red-intense-fg {
-  color: #B22B31;
-}
-.ansi-red-intense-bg {
-  background-color: #B22B31;
-}
-.ansi-green-fg {
-  color: #00A250;
-}
-.ansi-green-bg {
-  background-color: #00A250;
-}
-.ansi-green-intense-fg {
-  color: #007427;
-}
-.ansi-green-intense-bg {
-  background-color: #007427;
-}
-.ansi-yellow-fg {
-  color: #DDB62B;
-}
-.ansi-yellow-bg {
-  background-color: #DDB62B;
-}
-.ansi-yellow-intense-fg {
-  color: #B27D12;
-}
-.ansi-yellow-intense-bg {
-  background-color: #B27D12;
-}
-.ansi-blue-fg {
-  color: #208FFB;
-}
-.ansi-blue-bg {
-  background-color: #208FFB;
-}
-.ansi-blue-intense-fg {
-  color: #0065CA;
-}
-.ansi-blue-intense-bg {
-  background-color: #0065CA;
-}
-.ansi-magenta-fg {
-  color: #D160C4;
-}
-.ansi-magenta-bg {
-  background-color: #D160C4;
-}
-.ansi-magenta-intense-fg {
-  color: #A03196;
-}
-.ansi-magenta-intense-bg {
-  background-color: #A03196;
-}
-.ansi-cyan-fg {
-  color: #60C6C8;
-}
-.ansi-cyan-bg {
-  background-color: #60C6C8;
-}
-.ansi-cyan-intense-fg {
-  color: #258F8F;
-}
-.ansi-cyan-intense-bg {
-  background-color: #258F8F;
-}
-.ansi-white-fg {
-  color: #C5C1B4;
-}
-.ansi-white-bg {
-  background-color: #C5C1B4;
-}
-.ansi-white-intense-fg {
-  color: #A1A6B2;
-}
-.ansi-white-intense-bg {
-  background-color: #A1A6B2;
-}
-.ansi-bold {
-  font-weight: bold;
-}
-.ansi-underline {
-  text-decoration: underline;
-}
-.ansi-inverse {
-  outline: 0.5px dotted;
-}
-/* The following styles are deprecated an will be removed in a future version */
+/* CSS font colors for translated ANSI colors. */
 .ansibold {
   font-weight: bold;
 }
@@ -260,20 +151,12 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  position: relative;
-  overflow: visible;
-}
-div.cell:before {
-  position: absolute;
-  display: block;
-  top: -1px;
-  left: -1px;
-  width: 5px;
-  height: calc(100% +  2px);
-  content: '';
-  background: transparent;
+  border-left-width: 1px;
+  padding-left: 5px;
+  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
 }
 div.cell.jupyter-soft-selected {
+  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -286,39 +169,27 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected,
-div.cell.selected.jupyter-soft-selected {
+div.cell.selected {
   border-color: #ababab;
-}
-div.cell.selected:before,
-div.cell.selected.jupyter-soft-selected:before {
-  position: absolute;
-  display: block;
-  top: -1px;
-  left: -1px;
-  width: 5px;
-  height: calc(100% +  2px);
-  content: '';
-  background: #42A5F5;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
 }
 @media print {
-  div.cell.selected,
-  div.cell.selected.jupyter-soft-selected {
+  div.cell.selected {
     border-color: transparent;
   }
 }
+div.cell.selected.jupyter-soft-selected {
+  border-left-width: 0;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
+}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-}
-.edit_mode div.cell.selected:before {
-  position: absolute;
-  display: block;
-  top: -1px;
-  left: -1px;
-  width: 5px;
-  height: calc(100% +  2px);
-  content: '';
-  background: #66BB6A;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -776,9 +647,6 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
-div.output_area .mglyph > img {
-  max-width: none;
-}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -939,10 +807,6 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
-.rendered_html ul:not(.list-inline),
-.rendered_html ol:not(.list-inline) {
-  padding-left: 2em;
-}
 
 
 
@@ -959,24 +823,16 @@ div.output_unrecognized a:hover {
 }
 
 
-
-
-
 .rendered_html pre,
-
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
+.rendered_html td,
 
-.rendered_html tbody tr:nth-child(odd) {
-  background: #f5f5f5;
-}
-.rendered_html tbody tr:hover {
-  background: rgba(66, 165, 245, 0.2);
-}
+
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -992,10 +848,6 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
-
-.rendered_html * + .alert {
-  margin-top: 1em;
-}
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -1046,15 +898,8 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
-.text_cell.rendered .rendered_html tr,
-.text_cell.rendered .rendered_html th,
-.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
-}
-.text_cell .dropzone .input_area {
-  border: 2px dashed #bababa;
-  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -1208,7 +1053,7 @@ Review:  A review's is the words of the review, represented as numbers in a nump
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [95]:</div>
+<div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1231,11 +1076,11 @@ Review:  A review's is the words of the review, represented as numbers in a nump
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [81]:</div>
+<div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># As an example the first training review has len(x_train[0]) many words.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">'The first training review has </span><span class="si">{0}</span><span class="s1"> many words and is a </span><span class="si">{1}</span><span class="s1"> review.  </span><span class="se">\n</span><span class="s1"> 0 for negative, 1 for positive'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">y_test</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'The first training review has </span><span class="si">{0}</span><span class="s1"> many words and is a </span><span class="si">{1}</span><span class="s1"> review.</span><span class="se">\n</span><span class="s1"> 0 for negative, 1 for positive'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">y_test</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -1245,7 +1090,7 @@ Review:  A review's is the words of the review, represented as numbers in a nump
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>The first training review has 218 many words and is a 0 review.  
+<pre>The first training review has 218 many words and is a 0 review.
  0 for negative, 1 for positive
 </pre>
 </div>
@@ -1255,7 +1100,7 @@ Review:  A review's is the words of the review, represented as numbers in a nump
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [87]:</div>
+<div class="prompt input_prompt">In [18]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Vectorizing each review.</span>
@@ -1283,7 +1128,7 @@ Review:  A review's is the words of the review, represented as numbers in a nump
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [89]:</div>
+<div class="prompt input_prompt">In [19]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">thetas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">TOP_N_WORDS</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  
@@ -1301,7 +1146,7 @@ Review:  A review's is the words of the review, represented as numbers in a nump
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [91]:</div>
+<div class="prompt input_prompt">In [20]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># We will feed our parameters for each review through the sigmoid function, a squasher function to </span>
@@ -1321,15 +1166,15 @@ Review:  A review's is the words of the review, represented as numbers in a nump
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [93]:</div>
+<div class="prompt input_prompt">In [21]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">acc</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">accuracy</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">ys</span><span class="p">):</span> <span class="c1"># faster with a list comprehension?</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">accuracy</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">ys</span><span class="p">):</span> <span class="c1"># faster with a list comprehension?</span>
     <span class="n">predict_was_right</span> <span class="o">=</span> <span class="p">[(</span><span class="n">prediction</span> <span class="o">></span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">==</span> <span class="n">ys</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">prediction</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">predictions</span><span class="p">)]</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">predict_was_right</span><span class="p">)</span> <span class="o">/</span> <span class="n">ys</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">acc</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1359,9 +1204,10 @@ Review:  A review's is the words of the review, represented as numbers in a nump
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Here-is-the-function-we-will-use-to-calculate-the-error-for-the-model.">Here is the function we will use to calculate the error for the model.<a class="anchor-link" href="#Here-is-the-function-we-will-use-to-calculate-the-error-for-the-model.">¶</a></h3>\begin{equation*}
+<h3 id="Here-is-the-function-we-will-use-to-calculate-the-error-for-the-model.">Here is the function we will use to calculate the error for the model.<a class="anchor-link" href="#Here-is-the-function-we-will-use-to-calculate-the-error-for-the-model.">¶</a></h3><p>\begin{equation*}
 CE = \frac{1}{m} * \sum_{i=1}^m [ -y^i * log(h_{ \theta}(x^i)) - (1 - y^i) * log(1 - h_{ \theta}(x^i) )]
-\end{equation*}<p>Where h_theta(x) is the prediction from theta transpose x that we ran through the squasher function.  And i is the ith review.</p>
+\end{equation*}</p>
+<p>Where h_theta(x) is the prediction from theta transpose x that we ran through the squasher function.  And i is the ith review.</p>
 <p>This error function calculates what is known as the cross entropy loss.  Taking the log of the difference is a good way to evaulate model effectiveness.  In the worst case scenario where a real value is actually a 1 [positive], and our model tells us 99.9999% certainty that the prediction is 0, we will have an error that approaches infinity.  Thus severely punishing the model for having the worst guess.</p>
 <p>Later on when we run the model, we will run batches of update theta functions.  At the core of these functions, we will be subtracting the first derivative with respect to theta_j of our CE function.  Where j indicates the jth parameter</p>
 </div>
@@ -1369,7 +1215,7 @@ CE = \frac{1}{m} * \sum_{i=1}^m [ -y^i * log(h_{ \theta}(x^i)) - (1 - y^i) * log
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [85]:</div>
+<div class="prompt input_prompt">In [22]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">cross_entropy</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">ys</span><span class="p">):</span>
@@ -1392,15 +1238,15 @@ CE = \frac{1}{m} * \sum_{i=1}^m [ -y^i * log(h_{ \theta}(x^i)) - (1 - y^i) * log
  \frac{\partial}{\partial \theta_{j}}CE = \sum_{i=1}^m[ (h_{ \theta}(x^i) - y^i) * x^i_{j} ]
  \end{equation*}</p>
 <p>As the heart of gradient descent, we will run updates across all thetas, where we subract out the derivative with respect to each individual theta.  The derivative is multiplied by a stepping rate (Learning Rate, alpha) to fine tune the steps.</p>
-\begin{equation*}
+<p>\begin{equation*}
 \theta_{j} = \theta_{j} - \alpha * \frac{\partial}{\partial \theta_{j}}CE = \theta_{j} - \alpha * \sum_{i=1}^m[ (h_{ \theta}(x^i) - y^i) * x^i_{j} ]
-\end{equation*}
+\end{equation*}</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [99]:</div>
+<div class="prompt input_prompt">In [23]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">NUM_EPOCHS</span> <span class="o">=</span> <span class="mi">10</span>
@@ -1450,16 +1296,16 @@ CE = \frac{1}{m} * \sum_{i=1}^m [ -y^i * log(h_{ \theta}(x^i)) - (1 - y^i) * log
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Epoch #0 | Error: 0.31 | acc: 0.87 | test acc: 0.86
-Epoch #1 | Error: 0.31 | acc: 0.87 | test acc: 0.86
-Epoch #2 | Error: 0.31 | acc: 0.87 | test acc: 0.86
-Epoch #3 | Error: 0.31 | acc: 0.87 | test acc: 0.86
-Epoch #4 | Error: 0.31 | acc: 0.87 | test acc: 0.86
-Epoch #5 | Error: 0.31 | acc: 0.87 | test acc: 0.86
-Epoch #6 | Error: 0.30 | acc: 0.87 | test acc: 0.86
-Epoch #7 | Error: 0.30 | acc: 0.87 | test acc: 0.86
-Epoch #8 | Error: 0.30 | acc: 0.87 | test acc: 0.86
-Epoch #9 | Error: 0.30 | acc: 0.88 | test acc: 0.86
+<pre>Epoch #0 | Error: 0.44 | acc: 0.83 | test acc: 0.82
+Epoch #1 | Error: 0.39 | acc: 0.85 | test acc: 0.84
+Epoch #2 | Error: 0.37 | acc: 0.85 | test acc: 0.85
+Epoch #3 | Error: 0.35 | acc: 0.86 | test acc: 0.85
+Epoch #4 | Error: 0.34 | acc: 0.86 | test acc: 0.85
+Epoch #5 | Error: 0.33 | acc: 0.86 | test acc: 0.85
+Epoch #6 | Error: 0.33 | acc: 0.87 | test acc: 0.86
+Epoch #7 | Error: 0.33 | acc: 0.87 | test acc: 0.86
+Epoch #8 | Error: 0.32 | acc: 0.87 | test acc: 0.86
+Epoch #9 | Error: 0.32 | acc: 0.87 | test acc: 0.86
 </pre>
 </div>
 </div>
