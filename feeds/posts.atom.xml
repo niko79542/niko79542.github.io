@@ -1045,7 +1045,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [17]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [1]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
@@ -1067,16 +1067,9 @@ h6:hover .anchor-link {
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
 &lt;div class="output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;Out[17]:&lt;/div&gt;
+&lt;div class="prompt output_prompt"&gt;Out[1]:&lt;/div&gt;
 &lt;div class="output_text output_subarea output_execute_result"&gt;
 &lt;pre&gt;Text(0,1.2,'Plot 1.0: X_1 against X_2')&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_area"&gt;
-&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_png output_subarea "&gt;
-&lt;img src="data:image/png;base64,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
-" /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1092,7 +1085,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [18]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [2]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tensorflow&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;tf&lt;/span&gt;
@@ -1101,191 +1094,26 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [34]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;graphviz&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Digraph&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;tf_to_dot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;graph&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;dot&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Digraph&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-    &lt;span class="n"&gt;dot&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;graph_attr&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'rankdir'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'LR'&lt;/span&gt; &lt;span class="c1"&gt;# graph goes from left to right.&lt;/span&gt;
-
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;as_graph_def&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;node&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;dot&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;node&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;input&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;dot&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;edge&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-            
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;dot&lt;/span&gt;
-
-&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Graph&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;as_default&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-    
-    &lt;span class="n"&gt;X&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;placeholder&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;float32&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"X"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    
-    &lt;span class="n"&gt;W1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;placeholder&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;float32&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"W1"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;b1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;placeholder&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;float32&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"b1"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="n"&gt;a1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sigmoid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;matmul&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;W1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"ha_1"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# first hidden activations.&lt;/span&gt;
-
-    &lt;span class="n"&gt;W2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;placeholder&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;float32&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"W2"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;b2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;placeholder&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;float32&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"b2"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;y_hat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sigmoid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;matmul&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;W2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"output"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-           
-&lt;span class="n"&gt;tf_to_dot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
 &lt;div class="output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;Out[34]:&lt;/div&gt;
-&lt;div class="output_svg output_subarea output_execute_result"&gt;
-
-
-
-&lt;!-- Generated by graphviz version 2.40.1 (20161225.0304)
- --&gt;
-&lt;!-- Title: %3 Pages: 1 --&gt;
-&lt;svg height="179pt" viewbox="0.00 0.00 698.57 179.00" width="699pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
-&lt;g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(4 175)"&gt;
-&lt;title&gt;%3
-&lt;polygon fill="#ffffff" points="-4,4 -4,-175 694.5675,-175 694.5675,4 -4,4" stroke="transparent"&gt;&lt;/polygon&gt;
-&lt;!-- X --&gt;
-&lt;g class="node" id="node1"&gt;
-&lt;title&gt;X
-&lt;ellipse cx="27" cy="-153" fill="none" rx="27" ry="18" stroke="#000000"&gt;&lt;/ellipse&gt;
-&lt;text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="27" y="-149.3"&gt;X&lt;/text&gt;
-&lt;/g&gt;
-&lt;!-- MatMul --&gt;
-&lt;g class="node" id="node4"&gt;
-&lt;title&gt;MatMul
-&lt;ellipse cx="130.2964" cy="-126" fill="none" rx="40.0939" ry="18" stroke="#000000"&gt;&lt;/ellipse&gt;
-&lt;text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="130.2964" y="-122.3"&gt;MatMul&lt;/text&gt;
-&lt;/g&gt;
-&lt;!-- X&amp;#45;&amp;gt;MatMul --&gt;
-&lt;g class="edge" id="edge1"&gt;
-&lt;title&gt;X-&gt;MatMul
-&lt;path d="M52.2691,-146.3951C62.2475,-143.7869 74.0214,-140.7094 85.3569,-137.7465" fill="none" stroke="#000000"&gt;&lt;/path&gt;
-&lt;polygon fill="#000000" points="86.3595,-141.1021 95.1493,-135.1869 84.5892,-134.3296 86.3595,-141.1021" stroke="#000000"&gt;&lt;/polygon&gt;
-&lt;/g&gt;
-&lt;!-- W1 --&gt;
-&lt;g class="node" id="node2"&gt;
-&lt;title&gt;W1
-&lt;ellipse cx="27" cy="-99" fill="none" rx="27" ry="18" stroke="#000000"&gt;&lt;/ellipse&gt;
-&lt;text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="27" y="-95.3"&gt;W1&lt;/text&gt;
-&lt;/g&gt;
-&lt;!-- W1&amp;#45;&amp;gt;MatMul --&gt;
-&lt;g class="edge" id="edge2"&gt;
-&lt;title&gt;W1-&gt;MatMul
-&lt;path d="M52.2691,-105.6049C62.2475,-108.2131 74.0214,-111.2906 85.3569,-114.2535" fill="none" stroke="#000000"&gt;&lt;/path&gt;
-&lt;polygon fill="#000000" points="84.5892,-117.6704 95.1493,-116.8131 86.3595,-110.8979 84.5892,-117.6704" stroke="#000000"&gt;&lt;/polygon&gt;
-&lt;/g&gt;
-&lt;!-- b1 --&gt;
-&lt;g class="node" id="node3"&gt;
-&lt;title&gt;b1
-&lt;ellipse cx="130.2964" cy="-72" fill="none" rx="27" ry="18" stroke="#000000"&gt;&lt;/ellipse&gt;
-&lt;text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="130.2964" y="-68.3"&gt;b1&lt;/text&gt;
-&lt;/g&gt;
-&lt;!-- add --&gt;
-&lt;g class="node" id="node5"&gt;
-&lt;title&gt;add
-&lt;ellipse cx="233.5928" cy="-99" fill="none" rx="27" ry="18" stroke="#000000"&gt;&lt;/ellipse&gt;
-&lt;text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="233.5928" y="-95.3"&gt;add&lt;/text&gt;
-&lt;/g&gt;
-&lt;!-- b1&amp;#45;&amp;gt;add --&gt;
-&lt;g class="edge" id="edge4"&gt;
-&lt;title&gt;b1-&gt;add
-&lt;path d="M155.5656,-78.6049C168.4463,-81.9718 184.3192,-86.1207 198.3785,-89.7955" fill="none" stroke="#000000"&gt;&lt;/path&gt;
-&lt;polygon fill="#000000" points="197.6665,-93.227 208.2266,-92.3697 199.4367,-86.4545 197.6665,-93.227" stroke="#000000"&gt;&lt;/polygon&gt;
-&lt;/g&gt;
-&lt;!-- MatMul&amp;#45;&amp;gt;add --&gt;
-&lt;g class="edge" id="edge3"&gt;
-&lt;title&gt;MatMul-&gt;add
-&lt;path d="M165.2679,-116.859C176.0016,-114.0534 187.8119,-110.9664 198.5504,-108.1595" fill="none" stroke="#000000"&gt;&lt;/path&gt;
-&lt;polygon fill="#000000" points="199.6577,-111.4878 208.4475,-105.5726 197.8874,-104.7153 199.6577,-111.4878" stroke="#000000"&gt;&lt;/polygon&gt;
-&lt;/g&gt;
-&lt;!-- ha_1 --&gt;
-&lt;g class="node" id="node6"&gt;
-&lt;title&gt;ha_1
-&lt;ellipse cx="324.5404" cy="-99" fill="none" rx="27.8951" ry="18" stroke="#000000"&gt;&lt;/ellipse&gt;
-&lt;text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="324.5404" y="-95.3"&gt;ha_1&lt;/text&gt;
-&lt;/g&gt;
-&lt;!-- add&amp;#45;&amp;gt;ha_1 --&gt;
-&lt;g class="edge" id="edge5"&gt;
-&lt;title&gt;add-&gt;ha_1
-&lt;path d="M260.8801,-99C268.8405,-99 277.6911,-99 286.2,-99" fill="none" stroke="#000000"&gt;&lt;/path&gt;
-&lt;polygon fill="#000000" points="286.3267,-102.5001 296.3267,-99 286.3266,-95.5001 286.3267,-102.5001" stroke="#000000"&gt;&lt;/polygon&gt;
-&lt;/g&gt;
-&lt;!-- MatMul_1 --&gt;
-&lt;g class="node" id="node9"&gt;
-&lt;title&gt;MatMul_1
-&lt;ellipse cx="437.8835" cy="-72" fill="none" rx="49.2915" ry="18" stroke="#000000"&gt;&lt;/ellipse&gt;
-&lt;text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="437.8835" y="-68.3"&gt;MatMul_1&lt;/text&gt;
-&lt;/g&gt;
-&lt;!-- ha_1&amp;#45;&amp;gt;MatMul_1 --&gt;
-&lt;g class="edge" id="edge6"&gt;
-&lt;title&gt;ha_1-&gt;MatMul_1
-&lt;path d="M350.8285,-92.7378C361.4584,-90.2056 374.1131,-87.191 386.4356,-84.2556" fill="none" stroke="#000000"&gt;&lt;/path&gt;
-&lt;polygon fill="#000000" points="387.285,-87.6513 396.2018,-81.9292 385.6629,-80.8419 387.285,-87.6513" stroke="#000000"&gt;&lt;/polygon&gt;
-&lt;/g&gt;
-&lt;!-- W2 --&gt;
-&lt;g class="node" id="node7"&gt;
-&lt;title&gt;W2
-&lt;ellipse cx="324.5404" cy="-45" fill="none" rx="27" ry="18" stroke="#000000"&gt;&lt;/ellipse&gt;
-&lt;text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="324.5404" y="-41.3"&gt;W2&lt;/text&gt;
-&lt;/g&gt;
-&lt;!-- W2&amp;#45;&amp;gt;MatMul_1 --&gt;
-&lt;g class="edge" id="edge7"&gt;
-&lt;title&gt;W2-&gt;MatMul_1
-&lt;path d="M349.9768,-51.0593C360.7919,-53.6357 373.8142,-56.7378 386.4822,-59.7555" fill="none" stroke="#000000"&gt;&lt;/path&gt;
-&lt;polygon fill="#000000" points="385.9779,-63.2332 396.5168,-62.1458 387.6001,-56.4237 385.9779,-63.2332" stroke="#000000"&gt;&lt;/polygon&gt;
-&lt;/g&gt;
-&lt;!-- b2 --&gt;
-&lt;g class="node" id="node8"&gt;
-&lt;title&gt;b2
-&lt;ellipse cx="437.8835" cy="-18" fill="none" rx="27" ry="18" stroke="#000000"&gt;&lt;/ellipse&gt;
-&lt;text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="437.8835" y="-14.3"&gt;b2&lt;/text&gt;
-&lt;/g&gt;
-&lt;!-- add_1 --&gt;
-&lt;g class="node" id="node10"&gt;
-&lt;title&gt;add_1
-&lt;ellipse cx="555.7762" cy="-45" fill="none" rx="32.4942" ry="18" stroke="#000000"&gt;&lt;/ellipse&gt;
-&lt;text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="555.7762" y="-41.3"&gt;add_1&lt;/text&gt;
-&lt;/g&gt;
-&lt;!-- b2&amp;#45;&amp;gt;add_1 --&gt;
-&lt;g class="edge" id="edge9"&gt;
-&lt;title&gt;b2-&gt;add_1
-&lt;path d="M463.4645,-23.8586C478.7493,-27.3592 498.497,-31.8818 515.8026,-35.8452" fill="none" stroke="#000000"&gt;&lt;/path&gt;
-&lt;polygon fill="#000000" points="515.1284,-39.2813 525.6574,-38.1021 516.6912,-32.458 515.1284,-39.2813" stroke="#000000"&gt;&lt;/polygon&gt;
-&lt;/g&gt;
-&lt;!-- MatMul_1&amp;#45;&amp;gt;add_1 --&gt;
-&lt;g class="edge" id="edge8"&gt;
-&lt;title&gt;MatMul_1-&gt;add_1
-&lt;path d="M479.78,-62.4048C491.451,-59.7319 504.0976,-56.8355 515.6634,-54.1867" fill="none" stroke="#000000"&gt;&lt;/path&gt;
-&lt;polygon fill="#000000" points="516.531,-57.5787 525.4973,-51.9345 514.9683,-50.7554 516.531,-57.5787" stroke="#000000"&gt;&lt;/polygon&gt;
-&lt;/g&gt;
-&lt;!-- output --&gt;
-&lt;g class="node" id="node11"&gt;
-&lt;title&gt;output
-&lt;ellipse cx="657.4204" cy="-45" fill="none" rx="33.2948" ry="18" stroke="#000000"&gt;&lt;/ellipse&gt;
-&lt;text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="657.4204" y="-41.3"&gt;output&lt;/text&gt;
-&lt;/g&gt;
-&lt;!-- add_1&amp;#45;&amp;gt;output --&gt;
-&lt;g class="edge" id="edge10"&gt;
-&lt;title&gt;add_1-&gt;output
-&lt;path d="M588.4966,-45C596.5834,-45 605.3735,-45 613.8852,-45" fill="none" stroke="#000000"&gt;&lt;/path&gt;
-&lt;polygon fill="#000000" points="614.0636,-48.5001 624.0635,-45 614.0635,-41.5001 614.0636,-48.5001" stroke="#000000"&gt;&lt;/polygon&gt;
-&lt;/g&gt;
-&lt;/g&gt;
-&lt;/svg&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stderr output_text"&gt;
+&lt;pre&gt;/home/niko/anaconda3/envs/ned/lib/python3.6/importlib/_bootstrap.py:219: RuntimeWarning: compiletime version 3.5 of module 'tensorflow.python.framework.fast_tensor_util' does not match runtime version 3.6
+  return f(*args, **kwds)
+/home/niko/anaconda3/envs/ned/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;&lt;img alt="lightswitch" src="https://res.cloudinary.com/dlpclqzwk/image/upload/v1517370192/lightswitch_hrvuoq.png" /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1299,7 +1127,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [20]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [3]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;sigmoid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -1311,7 +1139,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [29]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [4]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# our inputs.&lt;/span&gt;
@@ -1362,7 +1190,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;Out[29]:&lt;/div&gt;
+&lt;div class="prompt output_prompt"&gt;Out[4]:&lt;/div&gt;
 &lt;div class="output_text output_subarea output_execute_result"&gt;
 &lt;pre&gt;array([0., 1., 1., 0.])&lt;/pre&gt;
 &lt;/div&gt;
