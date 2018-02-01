@@ -6,9 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>  IMDB Logistic Regression | Real Data Talk
+  <title>  Simple Softmax Model on MNIST Dataset | Real Data Talk
 </title>
-  <link rel="canonical" href="/logistic.html">
+  <link rel="canonical" href="/mnist-softmax.html">
 
 
   <link rel="stylesheet" href="/theme/css/bootstrap.min.css">
@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="/theme/css/theme.css">
 
   
-  <meta name="description" content="Predicting IMDB Sentiment purely from words in review¶Data: Data is from IMDB, neatly stored in a keras dataset. IMDB provides data from 25_000 reviews and the corresponding result for whether the review is positive or negative. Hypothesis: We can predict the sentiment of a review from a list of 1_000 of the most frequent words used in the reviews as a whole, and whether or not the word exists in a review.">
+  <meta name="description" content="MNIST Softmax Model with 1 hidden Layer¶MNIST is a great dataset to use to write a simple NN. MNIST is a dataset of handwritten digits. The handwritten digits are represented by a 28 by 28 pixel matrix, with each pixel ranging from 0-255, the darkness of that pixel. Let's see if we can obtain any accuracy in predicting handwritten digit by using each pixel as a parameter.">
 
 
 </head>
@@ -45,15 +45,15 @@
 
   <div class="main">
     <div class="container">
-      <h1>  IMDB Logistic Regression
+      <h1>  Simple Softmax Model on MNIST Dataset
 </h1>
       <hr>
   <article class="article">
     <header>
       <ul class="list-inline">
-        <li class="list-inline-item text-muted" title="2018-01-20T19:57:00-08:00">
+        <li class="list-inline-item text-muted" title="2018-02-01T14:49:00-08:00">
           <i class="fa fa-clock-o"></i>
-          Sat 20 January 2018
+          Thu 01 February 2018
         </li>
         <li class="list-inline-item">
           <i class="fa fa-folder-open-o"></i>
@@ -1041,34 +1041,197 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Predicting-IMDB-Sentiment-purely-from-words-in-review">Predicting IMDB Sentiment purely from words in review<a class="anchor-link" href="#Predicting-IMDB-Sentiment-purely-from-words-in-review">¶</a></h3><p><strong>Data</strong>:  Data is from IMDB, neatly stored in a keras dataset.  IMDB provides data from 25_000 reviews and the corresponding result for whether the review is positive or negative.</p>
-<p><strong>Hypothesis</strong>: We can predict the sentiment of a review from a list of 1_000 of the most frequent words used in the reviews as a whole, and whether or not the word exists in a review.</p>
-<p><strong>Definitions</strong>
-Review:  A review's is the words of the review, represented as numbers in a numpy array.  The number indicates the frequency of the word in the dataset as a whole.  Smaller numbers are more frequent.</p>
-<p><strong>Parameters/features/x_values</strong> Variables we will use to predict the outcome.</p>
-<p><strong>Supervised learning</strong>: We will have the 'right answers' to the review's sentiment.  Y values will be either 0's or 1's indicating if the review was actually negative or positive respectively.  These discrete output value makes this a classification problem, which is great for logistic regression.</p>
-<p>As features we will use whether or not a word is included in a review.</p>
+<h3 id="MNIST-Softmax-Model-with-1-hidden-Layer">MNIST Softmax Model with 1 hidden Layer<a class="anchor-link" href="#MNIST-Softmax-Model-with-1-hidden-Layer">¶</a></h3><p>MNIST is a great dataset to use to write a simple NN.  MNIST is a dataset of handwritten digits.  The handwritten digits are represented by a 28 by 28 pixel matrix, with each pixel ranging from 0-255, the darkness of that pixel.  Let's see if we can obtain any accuracy in predicting handwritten digit by using each pixel as a parameter.</p>
+<p>We are going to load some MNIST training data into a NN.  Run it through 1 hidden layer using the sigmoid function.  Finally we are going to run the output layer through the softmax function to</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In [85]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">keras.datasets</span> <span class="k">import</span> <span class="n">imdb</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 
-<span class="n">TOP_N_WORDS</span> <span class="o">=</span> <span class="mi">1</span><span class="n">_000</span>
-<span class="c1"># To speed up model, we will only analyze the most frequent TOP_N_WORDS words in all reviews.  </span>
+<span class="kn">from</span> <span class="nn">keras.datasets</span> <span class="k">import</span> <span class="n">mnist</span>
+<span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's throw away the vertical pixel adjacency data by flattening the 28x28 pixel image into a vector of length 28x28.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [86]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">NUM_PIXELS</span> <span class="o">=</span> <span class="mi">28</span><span class="o">*</span><span class="mi">28</span>
 
-<span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">imdb</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">"imdb.npz"</span><span class="p">,</span>
-                                                      <span class="n">num_words</span><span class="o">=</span><span class="n">TOP_N_WORDS</span><span class="p">,</span>
-                                                      <span class="p">)</span>
+<span class="k">def</span> <span class="nf">normalize_input</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">flattened</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">NUM_PIXELS</span><span class="p">))</span>
+    <span class="n">stddev</span> <span class="o">=</span> <span class="n">flattened</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">mean</span> <span class="o">=</span> <span class="n">flattened</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">flattened</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">stddev</span>
 
-<span class="c1"># x_train is our training data.  We would like to use x_train to predict y_train.  Review data and</span>
-<span class="c1"># corresponding sentiment.  </span>
-<span class="c1"># x_test is the test data.  Used to predict y_test values.  We can use this to test our model at the end.</span>
+<span class="c1"># by subtracting the mean, and dividing by the standard deviation, </span>
+<span class="c1"># we attempt to coerce our inputs into a normal distribution. Although the method is not perfect, this should give </span>
+<span class="c1"># us input variance closer to 1.  </span>
+<span class="c1"># Later on, when we feed Z values through the sigmoid function, we would like those values to also have variance of 1.</span>
+<span class="c1"># Reason being that the derivative at those specific points in the line will be slanted, and we can acheive some success </span>
+<span class="c1"># In moving in the correct directions when we take one step of stochastic gradient descent.</span>
+
+<span class="c1"># In the alternate scenatio, if we feed very large values through the squasher function, we will end up with derivatives</span>
+<span class="c1"># that are near 0.  In such a case, one step of gradient descent will not help us as much.  </span>
+
+<span class="c1"># product of variances  var_a * var_b = var_c</span>
+<span class="c1"># variance of the sum of normally distributed weights = sum of the variances.  so 1/#inputs should be the variance of our weights. </span>
+<span class="c1"># ... at least to start.</span>
+
+<span class="n">new_x_train</span> <span class="o">=</span> <span class="n">normalize_input</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
+<span class="n">new_x_test</span> <span class="o">=</span> <span class="n">normalize_input</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [87]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">build_graph</span><span class="p">():</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">NUM_PIXELS</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"input"</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"y"</span><span class="p">)</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">one_hot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">learning_rate</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">[],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"learning_rate"</span><span class="p">)</span>
+    
+    <span class="c1">#First layer </span>
+    <span class="n">W1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="p">[</span><span class="n">NUM_PIXELS</span><span class="p">,</span> <span class="mi">128</span><span class="p">],</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">NUM_PIXELS</span><span class="p">)),</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span>
+    <span class="p">)</span>
+    <span class="n">b1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">128</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    
+    <span class="n">Z1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">W1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b1</span>
+    <span class="n">H1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">Z1</span><span class="p">)</span>
+    
+    <span class="c1">#Second Layer</span>
+    <span class="n">W2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">128</span><span class="p">)),</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span>
+    <span class="p">)</span>
+    <span class="n">b2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">Z2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">H1</span><span class="p">,</span> <span class="n">W2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b2</span> 
+    <span class="n">H2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">Z2</span><span class="p">)</span> 
+    
+    <span class="c1">#Calculating Error, Mean Cross Entropy</span>
+    <span class="n">negative_logs</span> <span class="o">=</span> <span class="o">-</span><span class="n">tf</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">H2</span><span class="p">)</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">Y</span> <span class="o">*</span> <span class="n">negative_logs</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> 
+    <span class="n">mean_error</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span> 
+    
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">H2</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">output_type</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">predictions</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Training</span>
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span>
+        <span class="n">learning_rate</span> <span class="o">=</span> <span class="n">learning_rate</span>
+    <span class="p">)</span>
+    <span class="n">train_step</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">mean_error</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"X"</span><span class="p">:</span> <span class="n">X</span><span class="p">,</span> 
+        <span class="s2">"y"</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span>
+        <span class="s2">"learning_rate"</span><span class="p">:</span> <span class="n">learning_rate</span><span class="p">,</span>
+        <span class="s2">"mean_error"</span><span class="p">:</span> <span class="n">mean_error</span><span class="p">,</span>
+        <span class="s2">"accuracy"</span><span class="p">:</span> <span class="n">accuracy</span><span class="p">,</span>
+        <span class="s2">"train_step"</span><span class="p">:</span> <span class="n">train_step</span><span class="p">,</span>
+    <span class="p">}</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [88]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create our batches from x and y</span>
+<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">mnist_batches</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">batch_start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">new_x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">BATCH_SIZE</span><span class="p">):</span>
+    <span class="n">batch_x</span> <span class="o">=</span> <span class="n">new_x_train</span><span class="p">[</span><span class="n">batch_start</span><span class="p">:</span><span class="n">batch_start</span> <span class="o">+</span> <span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="n">batch_y</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[</span><span class="n">batch_start</span><span class="p">:</span><span class="n">batch_start</span> <span class="o">+</span> <span class="n">BATCH_SIZE</span><span class="p">]</span>
+    
+    <span class="n">mnist_batches</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">batch_x</span><span class="p">,</span> <span class="n">batch_y</span><span class="p">))</span>
+    <span class="c1"># store batches in tuples in mnist_batches.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [89]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">LEARNING_RATE</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="k">def</span> <span class="nf">train_batch</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">batch_x</span><span class="p">,</span> <span class="n">batch_y</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="n">graph</span><span class="p">[</span><span class="s2">"train_step"</span><span class="p">],</span>
+        <span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">graph</span><span class="p">[</span><span class="s2">"X"</span><span class="p">]:</span> <span class="n">batch_x</span><span class="p">,</span>
+            <span class="n">graph</span><span class="p">[</span><span class="s2">"y"</span><span class="p">]:</span> <span class="n">batch_y</span><span class="p">,</span>
+            <span class="n">graph</span><span class="p">[</span><span class="s2">"learning_rate"</span><span class="p">]:</span> <span class="n">LEARNING_RATE</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">evaluate_model</span><span class="p">(</span><span class="n">batch_idx</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
+    <span class="n">me</span><span class="p">,</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">graph</span><span class="p">[</span><span class="s2">"mean_error"</span><span class="p">],</span> <span class="n">graph</span><span class="p">[</span><span class="s2">"accuracy"</span><span class="p">]],</span>
+        <span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">graph</span><span class="p">[</span><span class="s2">"X"</span><span class="p">]:</span> <span class="n">new_x_test</span><span class="p">,</span>
+            <span class="n">graph</span><span class="p">[</span><span class="s2">"y"</span><span class="p">]:</span> <span class="n">y_test</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">'B: </span><span class="si">{batch_idx}</span><span class="s1"> | ME: </span><span class="si">{me:0.2f}</span><span class="s1"> | ACC: </span><span class="si">{acc:0.2f}</span><span class="s1">'</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">train_epoch</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">batch_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">batch_x</span><span class="p">,</span> <span class="n">batch_y</span><span class="p">))</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mnist_batches</span><span class="p">):</span>
+        <span class="n">train_batch</span><span class="p">(</span>
+            <span class="n">session</span> <span class="o">=</span> <span class="n">session</span><span class="p">,</span>
+            <span class="n">batch_x</span> <span class="o">=</span> <span class="n">batch_x</span><span class="p">,</span>
+            <span class="n">batch_y</span> <span class="o">=</span> <span class="n">batch_y</span><span class="p">,</span>
+            <span class="n">graph</span> <span class="o">=</span> <span class="n">graph</span>
+        <span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">batch_idx</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">evaluate_model</span><span class="p">(</span><span class="n">batch_idx</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">graph</span><span class="p">)</span>
+
+
+<span class="n">NUM_EPOCHS</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">build_graph</span><span class="p">()</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">())</span>
+    
+    <span class="k">for</span> <span class="n">epoch_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NUM_EPOCHS</span><span class="p">):</span>
+        <span class="n">train_epoch</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">graph</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1077,113 +1240,199 @@ Review:  A review's is the words of the review, represented as numbers in a nump
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
-<span class="ansi-green-fg"><ipython-input-1-42fe4f9b921d></span> in <span class="ansi-cyan-fg"><module></span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">import</span> numpy <span class="ansi-green-fg">as</span> np
-<span class="ansi-green-fg">----> 2</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> keras<span class="ansi-blue-fg">.</span>datasets <span class="ansi-green-fg">import</span> imdb
-<span class="ansi-green-intense-fg ansi-bold">      3</span> 
-<span class="ansi-green-intense-fg ansi-bold">      4</span> TOP_N_WORDS <span class="ansi-blue-fg">=</span> <span class="ansi-cyan-fg">1_000</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-red-fg"># To speed up model, we will only analyze the most frequent TOP_N_WORDS words in all reviews.</span>
-
-<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named 'keras'</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>B: 0 | ME: 2.41 | ACC: 0.11
+B: 100 | ME: 1.81 | ACC: 0.64
+B: 200 | ME: 1.45 | ACC: 0.72
+B: 300 | ME: 1.22 | ACC: 0.77
+B: 400 | ME: 1.05 | ACC: 0.81
+B: 500 | ME: 0.93 | ACC: 0.83
+B: 600 | ME: 0.84 | ACC: 0.84
+B: 700 | ME: 0.77 | ACC: 0.85
+B: 800 | ME: 0.71 | ACC: 0.86
+B: 900 | ME: 0.67 | ACC: 0.87
+B: 1000 | ME: 0.63 | ACC: 0.87
+B: 1100 | ME: 0.60 | ACC: 0.87
+B: 1200 | ME: 0.57 | ACC: 0.88
+B: 1300 | ME: 0.55 | ACC: 0.88
+B: 1400 | ME: 0.53 | ACC: 0.88
+B: 1500 | ME: 0.51 | ACC: 0.89
+B: 1600 | ME: 0.50 | ACC: 0.89
+B: 1700 | ME: 0.48 | ACC: 0.89
+B: 1800 | ME: 0.47 | ACC: 0.89
+B: 0 | ME: 0.46 | ACC: 0.89
+B: 100 | ME: 0.45 | ACC: 0.89
+B: 200 | ME: 0.44 | ACC: 0.89
+B: 300 | ME: 0.43 | ACC: 0.90
+B: 400 | ME: 0.43 | ACC: 0.89
+B: 500 | ME: 0.42 | ACC: 0.90
+B: 600 | ME: 0.41 | ACC: 0.90
+B: 700 | ME: 0.40 | ACC: 0.90
+B: 800 | ME: 0.40 | ACC: 0.90
+B: 900 | ME: 0.39 | ACC: 0.90
+B: 1000 | ME: 0.38 | ACC: 0.90
+B: 1100 | ME: 0.38 | ACC: 0.90
+B: 1200 | ME: 0.37 | ACC: 0.91
+B: 1300 | ME: 0.37 | ACC: 0.90
+B: 1400 | ME: 0.37 | ACC: 0.91
+B: 1500 | ME: 0.36 | ACC: 0.91
+B: 1600 | ME: 0.36 | ACC: 0.91
+B: 1700 | ME: 0.35 | ACC: 0.91
+B: 1800 | ME: 0.35 | ACC: 0.91
+B: 0 | ME: 0.35 | ACC: 0.91
+B: 100 | ME: 0.35 | ACC: 0.91
+B: 200 | ME: 0.34 | ACC: 0.91
+B: 300 | ME: 0.34 | ACC: 0.91
+B: 400 | ME: 0.34 | ACC: 0.91
+B: 500 | ME: 0.33 | ACC: 0.91
+B: 600 | ME: 0.33 | ACC: 0.91
+B: 700 | ME: 0.33 | ACC: 0.91
+B: 800 | ME: 0.33 | ACC: 0.91
+B: 900 | ME: 0.32 | ACC: 0.91
+B: 1000 | ME: 0.32 | ACC: 0.91
+B: 1100 | ME: 0.32 | ACC: 0.92
+B: 1200 | ME: 0.32 | ACC: 0.92
+B: 1300 | ME: 0.31 | ACC: 0.92
+B: 1400 | ME: 0.31 | ACC: 0.92
+B: 1500 | ME: 0.31 | ACC: 0.92
+B: 1600 | ME: 0.31 | ACC: 0.92
+B: 1700 | ME: 0.31 | ACC: 0.92
+B: 1800 | ME: 0.31 | ACC: 0.92
+B: 0 | ME: 0.30 | ACC: 0.92
+B: 100 | ME: 0.30 | ACC: 0.92
+B: 200 | ME: 0.30 | ACC: 0.92
+B: 300 | ME: 0.30 | ACC: 0.92
+B: 400 | ME: 0.30 | ACC: 0.92
+B: 500 | ME: 0.30 | ACC: 0.92
+B: 600 | ME: 0.29 | ACC: 0.92
+B: 700 | ME: 0.29 | ACC: 0.92
+B: 800 | ME: 0.29 | ACC: 0.92
+B: 900 | ME: 0.29 | ACC: 0.92
+B: 1000 | ME: 0.29 | ACC: 0.92
+B: 1100 | ME: 0.29 | ACC: 0.92
+B: 1200 | ME: 0.29 | ACC: 0.92
+B: 1300 | ME: 0.28 | ACC: 0.92
+B: 1400 | ME: 0.28 | ACC: 0.92
+B: 1500 | ME: 0.28 | ACC: 0.92
+B: 1600 | ME: 0.28 | ACC: 0.92
+B: 1700 | ME: 0.28 | ACC: 0.92
+B: 1800 | ME: 0.28 | ACC: 0.92
+B: 0 | ME: 0.28 | ACC: 0.92
+B: 100 | ME: 0.28 | ACC: 0.92
+B: 200 | ME: 0.27 | ACC: 0.93
+B: 300 | ME: 0.27 | ACC: 0.93
+B: 400 | ME: 0.27 | ACC: 0.93
+B: 500 | ME: 0.27 | ACC: 0.93
+B: 600 | ME: 0.27 | ACC: 0.93
+B: 700 | ME: 0.27 | ACC: 0.93
+B: 800 | ME: 0.27 | ACC: 0.93
+B: 900 | ME: 0.27 | ACC: 0.93
+B: 1000 | ME: 0.27 | ACC: 0.93
+B: 1100 | ME: 0.26 | ACC: 0.93
+B: 1200 | ME: 0.26 | ACC: 0.93
+B: 1300 | ME: 0.26 | ACC: 0.93
+B: 1400 | ME: 0.26 | ACC: 0.93
+B: 1500 | ME: 0.26 | ACC: 0.93
+B: 1600 | ME: 0.26 | ACC: 0.93
+B: 1700 | ME: 0.26 | ACC: 0.93
+B: 1800 | ME: 0.26 | ACC: 0.93
+B: 0 | ME: 0.26 | ACC: 0.93
+B: 100 | ME: 0.26 | ACC: 0.93
+B: 200 | ME: 0.26 | ACC: 0.93
+B: 300 | ME: 0.26 | ACC: 0.93
+B: 400 | ME: 0.26 | ACC: 0.93
+B: 500 | ME: 0.25 | ACC: 0.93
+B: 600 | ME: 0.25 | ACC: 0.93
+B: 700 | ME: 0.25 | ACC: 0.93
+B: 800 | ME: 0.25 | ACC: 0.93
+B: 900 | ME: 0.25 | ACC: 0.93
+B: 1000 | ME: 0.25 | ACC: 0.93
+B: 1100 | ME: 0.25 | ACC: 0.93
+B: 1200 | ME: 0.25 | ACC: 0.93
+B: 1300 | ME: 0.25 | ACC: 0.93
+B: 1400 | ME: 0.25 | ACC: 0.93
+B: 1500 | ME: 0.25 | ACC: 0.93
+B: 1600 | ME: 0.24 | ACC: 0.93
+B: 1700 | ME: 0.24 | ACC: 0.93
+B: 1800 | ME: 0.24 | ACC: 0.93
+B: 0 | ME: 0.24 | ACC: 0.93
+B: 100 | ME: 0.24 | ACC: 0.93
+B: 200 | ME: 0.24 | ACC: 0.93
+B: 300 | ME: 0.24 | ACC: 0.93
+B: 400 | ME: 0.24 | ACC: 0.93
+B: 500 | ME: 0.24 | ACC: 0.93
+B: 600 | ME: 0.24 | ACC: 0.93
+B: 700 | ME: 0.24 | ACC: 0.93
+B: 800 | ME: 0.24 | ACC: 0.93
+B: 900 | ME: 0.24 | ACC: 0.93
+B: 1000 | ME: 0.23 | ACC: 0.93
+B: 1100 | ME: 0.23 | ACC: 0.94
+B: 1200 | ME: 0.23 | ACC: 0.94
+B: 1300 | ME: 0.23 | ACC: 0.94
+B: 1400 | ME: 0.23 | ACC: 0.94
+B: 1500 | ME: 0.23 | ACC: 0.94
+B: 1600 | ME: 0.23 | ACC: 0.94
+B: 1700 | ME: 0.23 | ACC: 0.94
+B: 1800 | ME: 0.23 | ACC: 0.94
+B: 0 | ME: 0.23 | ACC: 0.94
+B: 100 | ME: 0.23 | ACC: 0.94
+B: 200 | ME: 0.23 | ACC: 0.94
+B: 300 | ME: 0.23 | ACC: 0.94
+B: 400 | ME: 0.23 | ACC: 0.94
+B: 500 | ME: 0.23 | ACC: 0.94
+B: 600 | ME: 0.23 | ACC: 0.94
+B: 700 | ME: 0.22 | ACC: 0.94
+B: 800 | ME: 0.23 | ACC: 0.94
+B: 900 | ME: 0.22 | ACC: 0.94
+B: 1000 | ME: 0.22 | ACC: 0.94
+B: 1100 | ME: 0.22 | ACC: 0.94
+B: 1200 | ME: 0.22 | ACC: 0.94
+B: 1300 | ME: 0.22 | ACC: 0.94
+B: 1400 | ME: 0.22 | ACC: 0.94
+B: 1500 | ME: 0.22 | ACC: 0.94
+B: 1600 | ME: 0.22 | ACC: 0.94
+B: 1700 | ME: 0.22 | ACC: 0.94
+B: 1800 | ME: 0.22 | ACC: 0.94
+B: 0 | ME: 0.22 | ACC: 0.94
+B: 100 | ME: 0.22 | ACC: 0.94
+B: 200 | ME: 0.22 | ACC: 0.94
+B: 300 | ME: 0.22 | ACC: 0.94
+B: 400 | ME: 0.22 | ACC: 0.94
+B: 500 | ME: 0.22 | ACC: 0.94
+B: 600 | ME: 0.22 | ACC: 0.94
+B: 700 | ME: 0.21 | ACC: 0.94
+B: 800 | ME: 0.22 | ACC: 0.94
+B: 900 | ME: 0.21 | ACC: 0.94
+B: 1000 | ME: 0.21 | ACC: 0.94
+B: 1100 | ME: 0.21 | ACC: 0.94
+B: 1200 | ME: 0.21 | ACC: 0.94
+B: 1300 | ME: 0.21 | ACC: 0.94
+B: 1400 | ME: 0.21 | ACC: 0.94
+B: 1500 | ME: 0.21 | ACC: 0.94
+B: 1600 | ME: 0.21 | ACC: 0.94
+B: 1700 | ME: 0.21 | ACC: 0.94
+B: 1800 | ME: 0.21 | ACC: 0.94
+B: 0 | ME: 0.21 | ACC: 0.94
+B: 100 | ME: 0.21 | ACC: 0.94
+B: 200 | ME: 0.21 | ACC: 0.94
+B: 300 | ME: 0.21 | ACC: 0.94
+B: 400 | ME: 0.21 | ACC: 0.94
+B: 500 | ME: 0.21 | ACC: 0.94
+B: 600 | ME: 0.21 | ACC: 0.94
+B: 700 | ME: 0.21 | ACC: 0.94
+B: 800 | ME: 0.21 | ACC: 0.94
+B: 900 | ME: 0.20 | ACC: 0.94
+B: 1000 | ME: 0.20 | ACC: 0.94
+B: 1100 | ME: 0.20 | ACC: 0.94
+B: 1200 | ME: 0.20 | ACC: 0.94
+B: 1300 | ME: 0.20 | ACC: 0.94
+B: 1400 | ME: 0.20 | ACC: 0.94
+B: 1500 | ME: 0.20 | ACC: 0.94
+B: 1600 | ME: 0.20 | ACC: 0.94
+B: 1700 | ME: 0.20 | ACC: 0.94
+B: 1800 | ME: 0.20 | ACC: 0.94
+</pre>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># As an example the first training review has len(x_train[0]) many words.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">'The first training review has </span><span class="si">{0}</span><span class="s1"> many words and is a </span><span class="si">{1}</span><span class="s1"> review.</span><span class="se">\n</span><span class="s1"> 0 for negative, 1 for positive'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">y_test</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Vectorizing each review.</span>
-<span class="c1"># We will sacrifice word order, word frequency in individual reviews, and word pairs for simplicity.</span>
-<span class="c1"># Create a word vector with length TOP_N_WORDS + 1, holding 0s or 1s if the word exists in the review,</span>
-<span class="c1"># aka our parameters</span>
-
-<span class="c1"># + 1 is added for the y intercept parameter.  This simplifies vector multiplication later on.</span>
-
-<span class="k">def</span> <span class="nf">word_vector</span><span class="p">(</span><span class="n">review</span><span class="p">):</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">TOP_N_WORDS</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">word_index</span> <span class="ow">in</span> <span class="n">review</span><span class="p">:</span>
-        <span class="n">result</span><span class="p">[</span><span class="n">word_index</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">return</span> <span class="n">result</span>
-    
-<span class="k">def</span> <span class="nf">vectorize_data</span><span class="p">(</span><span class="n">x_is</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">word_vector</span><span class="p">(</span><span class="n">review</span><span class="p">)</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">x_is</span><span class="p">])</span>
-
-<span class="n">new_x_train</span> <span class="o">=</span> <span class="n">vectorize_data</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">thetas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">TOP_N_WORDS</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  
-
-<span class="c1"># initialize thetas for each parameter at 0.  The predictive weight of each parameter, to tell us</span>
-<span class="c1"># whether the model thinks the review is positive or negative.</span>
-
-<span class="c1"># For example, if the 100th most frequent word in the dataset is the word 'good', then</span>
-<span class="c1"># theta_100 is the predictive power for the word good, if it turns out to be higher than theta of other words, </span>
-<span class="c1"># That means that 'good' being present in a review has a higher likelihood that the review is positive.  </span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># We will feed our parameters for each review through the sigmoid function, a squasher function to </span>
-<span class="c1"># calculate predict sentiment for each review based on our thetas.  Outputs will be between 0 and 1 for each review.</span>
-
-<span class="k">def</span> <span class="nf">sigma</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>  <span class="c1"># 0 < output < 1</span>
-
-<span class="k">def</span> <span class="nf">calc_predictions</span><span class="p">(</span><span class="n">x_is</span><span class="p">,</span> <span class="n">thetas</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">sigma</span><span class="p">(</span><span class="n">x_is</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">thetas</span><span class="p">))</span>
-
-<span class="n">predictions</span> <span class="o">=</span> <span class="n">calc_predictions</span><span class="p">(</span><span class="n">new_x_train</span><span class="p">,</span> <span class="n">thetas</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">accuracy</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">ys</span><span class="p">):</span> <span class="c1"># faster with a list comprehension?</span>
-    <span class="n">predict_was_right</span> <span class="o">=</span> <span class="p">[(</span><span class="n">prediction</span> <span class="o">></span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">==</span> <span class="n">ys</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">prediction</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">predictions</span><span class="p">)]</span>
-    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">predict_was_right</span><span class="p">)</span> <span class="o">/</span> <span class="n">ys</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">acc</span><span class="p">)</span>
-</pre></div>
 </div>
 </div>
 </div>
@@ -1192,109 +1441,7 @@ Review:  A review's is the words of the review, represented as numbers in a nump
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Our first guess at the thetas turned out to be 50%.  Which seems appropriate so far because we guessed 0 for all thetas.  We guessed that each of the TOP_N_WORDS existing in individual reviews had no predictive power.</p>
-<p>Now we can use a learning rate combined with subtracting the derivate of the cost function to adjust thetas up and doen respectively based on the derivative...</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Here-is-the-function-we-will-use-to-calculate-the-error-for-the-model.">Here is the function we will use to calculate the error for the model.<a class="anchor-link" href="#Here-is-the-function-we-will-use-to-calculate-the-error-for-the-model.">¶</a></h3><p>\begin{equation*}
-CE = \frac{1}{m} * \sum_{i=1}^m [ -y^i * log(h_{ \theta}(x^i)) - (1 - y^i) * log(1 - h_{ \theta}(x^i) )]
-\end{equation*}</p>
-<p>Where h_theta(x) is the prediction from theta transpose x that we ran through the squasher function.  And i is the ith review.</p>
-<p>This error function calculates what is known as the cross entropy loss.  Taking the log of the difference is a good way to evaulate model effectiveness.  In the worst case scenario where a real value is actually a 1 [positive], and our model tells us 99.9999% certainty that the prediction is 0, we will have an error that approaches infinity.  Thus severely punishing the model for having the worst guess.</p>
-<p>Later on when we run the model, we will run batches of update theta functions.  At the core of these functions, we will be subtracting the first derivative with respect to theta_j of our CE function.  Where j indicates the jth parameter</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">cross_entropy</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">ys</span><span class="p">):</span>
-    <span class="n">positive_y_loss</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ys</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">predictions</span><span class="p">))</span>
-    <span class="n">negative_y_loss</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ys</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">predictions</span><span class="p">))</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">positive_y_loss</span> <span class="o">+</span> <span class="n">negative_y_loss</span><span class="p">)</span> <span class="o">/</span> <span class="n">ys</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># returns the average CE error</span>
-    
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Want</strong>: to minimize CE.</p>
-<p>We can do this using the first derivative of CE.  Defined below.</p>
-<p>\begin{equation*}
- \frac{\partial}{\partial \theta_{j}}CE = \sum_{i=1}^m[ (h_{ \theta}(x^i) - y^i) * x^i_{j} ]
- \end{equation*}</p>
-<p>As the heart of gradient descent, we will run updates across all thetas, where we subract out the derivative with respect to each individual theta.  The derivative is multiplied by a stepping rate (Learning Rate, alpha) to fine tune the steps.</p>
-<p>\begin{equation*}
-\theta_{j} = \theta_{j} - \alpha * \frac{\partial}{\partial \theta_{j}}CE = \theta_{j} - \alpha * \sum_{i=1}^m[ (h_{ \theta}(x^i) - y^i) * x^i_{j} ]
-\end{equation*}</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">NUM_EPOCHS</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">LEARNING_RATE</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">128</span>
-
-<span class="c1"># deriv_wrt_theta is the derivative of our CE error function.</span>
-
-<span class="k">def</span> <span class="nf">deriv_wrt_theta_j</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">x_is</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">thetas</span><span class="p">):</span>
-    <span class="n">predictions</span> <span class="o">=</span> <span class="n">calc_predictions</span><span class="p">(</span><span class="n">x_is</span><span class="p">,</span> <span class="n">thetas</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">((</span><span class="n">predictions</span> <span class="o">-</span> <span class="n">ys</span><span class="p">),</span> <span class="n">x_is</span><span class="p">[:,</span><span class="n">j</span><span class="p">]))</span> <span class="o">/</span> <span class="n">ys</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">update_thetas</span><span class="p">(</span><span class="n">x_is</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">thetas</span><span class="p">):</span>   
-    <span class="n">updated_thetas</span> <span class="o">=</span> <span class="p">[</span><span class="n">theta</span> <span class="o">-</span> <span class="n">LEARNING_RATE</span> <span class="o">/</span> <span class="n">m</span> <span class="o">*</span> <span class="n">deriv_wrt_theta_j</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> 
-                                                                <span class="n">x_is</span><span class="p">,</span> 
-                                                                <span class="n">ys</span><span class="p">,</span> 
-                                                                <span class="n">thetas</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">theta</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">thetas</span><span class="p">)]</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">updated_thetas</span><span class="p">)</span>
-
-<span class="n">new_x_test</span> <span class="o">=</span> <span class="n">vectorize_data</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
-
-
-<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">NUM_EPOCHS</span><span class="p">):</span>
-    <span class="c1"># by updating our thetas every #{BATCH_SIZE} reviews, we can arrive at an answer with lower CE and higher acc</span>
-    <span class="c1"># more efficiently.</span>
-    <span class="k">for</span> <span class="n">batch_start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">new_x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">BATCH_SIZE</span><span class="p">):</span>
-        <span class="n">x_is</span> <span class="o">=</span> <span class="n">new_x_train</span><span class="p">[</span><span class="n">batch_start</span><span class="p">:(</span><span class="n">batch_start</span> <span class="o">+</span> <span class="n">BATCH_SIZE</span><span class="p">),</span> <span class="p">:]</span>
-        <span class="n">ys</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[</span><span class="n">batch_start</span><span class="p">:(</span><span class="n">batch_start</span> <span class="o">+</span> <span class="n">BATCH_SIZE</span><span class="p">)]</span>
-        <span class="n">thetas</span> <span class="o">=</span> <span class="n">update_thetas</span><span class="p">(</span><span class="n">x_is</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">thetas</span><span class="p">)</span>
-        
-    <span class="n">predictions</span> <span class="o">=</span> <span class="n">calc_predictions</span><span class="p">(</span><span class="n">new_x_train</span><span class="p">,</span> <span class="n">thetas</span><span class="p">)</span>
-    <span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-    <span class="n">ce</span> <span class="o">=</span> <span class="n">cross_entropy</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-
-    <span class="n">test_predictions</span> <span class="o">=</span> <span class="n">calc_predictions</span><span class="p">(</span><span class="n">new_x_test</span><span class="p">,</span> <span class="n">thetas</span><span class="p">)</span> <span class="c1"># Try model wth test data.</span>
-    <span class="n">test_acc</span> <span class="o">=</span> <span class="n">accuracy</span><span class="p">(</span><span class="n">test_predictions</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-    
-    <span class="nb">print</span><span class="p">(</span>
-        <span class="s1">'Epoch #</span><span class="si">{3}</span><span class="s1"> | Error: </span><span class="si">{0:0.2f}</span><span class="s1"> | acc: </span><span class="si">{1:0.2f}</span><span class="s1"> | test acc: </span><span class="si">{2:0.2f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ce</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">test_acc</span><span class="p">,</span> <span class="n">epoch</span><span class="p">)</span>
-    <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">thetas</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">20</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Amazingly we can achieve an 86% accuracy of predicting sentiment solely from using the existance of the top 1_000 words in each review!</p>
+<p>We are able to achieve 94% accuracy in predicting handwritten digits after about 10 epochs.  Notice the help we got in speed for calculating our data by normalizing it to start.  89% accuracy on the test set after the first epoch as opposed to 80% if we had just pushed inputs to range 0-1.  Far worse than that I assume if we had not normalized at all.  Well we would have just needed to adjust learning rate.</p>
 </div>
 </div>
 </div>
