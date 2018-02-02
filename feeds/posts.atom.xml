@@ -4,7 +4,116 @@
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
 }
@@ -85,12 +194,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -103,27 +220,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -581,6 +710,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph &gt; img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -741,6 +873,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -757,16 +893,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -782,6 +926,10 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -832,8 +980,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -982,7 +1137,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [85]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [51]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
@@ -1005,15 +1160,15 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [86]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [52]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;NUM_PIXELS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;28&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;28&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;normalize_input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;flattened&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reshape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;NUM_PIXELS&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="n"&gt;stddev&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;flattened&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;keepdims&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;mean&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;flattened&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;keepdims&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;stddev&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;flattened&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mf"&gt;1e-100&lt;/span&gt;
+    &lt;span class="n"&gt;mean&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;flattened&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;flattened&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;stddev&lt;/span&gt;
 
 &lt;span class="c1"&gt;# by subtracting the mean, and dividing by the standard deviation, &lt;/span&gt;
@@ -1039,7 +1194,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [87]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [53]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;build_graph&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
@@ -1099,7 +1254,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [88]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [54]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Create our batches from x and y&lt;/span&gt;
@@ -1119,7 +1274,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [89]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [55]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;LEARNING_RATE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.01&lt;/span&gt;
@@ -1175,76 +1330,95 @@ h6:hover .anchor-link {
 &lt;div class="output_area"&gt;
 &lt;div class="prompt"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
-&lt;pre&gt;B: 0 | ME: 2.41 | ACC: 0.11
-B: 100 | ME: 1.81 | ACC: 0.64
-B: 200 | ME: 1.45 | ACC: 0.72
-B: 300 | ME: 1.22 | ACC: 0.77
-B: 400 | ME: 1.05 | ACC: 0.81
-B: 500 | ME: 0.93 | ACC: 0.83
-B: 600 | ME: 0.84 | ACC: 0.84
-B: 700 | ME: 0.77 | ACC: 0.85
-B: 800 | ME: 0.71 | ACC: 0.86
-B: 900 | ME: 0.67 | ACC: 0.87
-B: 1000 | ME: 0.63 | ACC: 0.87
-B: 1100 | ME: 0.60 | ACC: 0.87
-B: 1200 | ME: 0.57 | ACC: 0.88
-B: 1300 | ME: 0.55 | ACC: 0.88
-B: 1400 | ME: 0.53 | ACC: 0.88
-B: 1500 | ME: 0.51 | ACC: 0.89
-B: 1600 | ME: 0.50 | ACC: 0.89
-B: 1700 | ME: 0.48 | ACC: 0.89
-B: 1800 | ME: 0.47 | ACC: 0.89
-B: 0 | ME: 0.46 | ACC: 0.89
-B: 100 | ME: 0.45 | ACC: 0.89
-B: 200 | ME: 0.44 | ACC: 0.89
-B: 300 | ME: 0.43 | ACC: 0.90
-B: 400 | ME: 0.43 | ACC: 0.89
-B: 500 | ME: 0.42 | ACC: 0.90
-B: 600 | ME: 0.41 | ACC: 0.90
-B: 700 | ME: 0.40 | ACC: 0.90
-B: 800 | ME: 0.40 | ACC: 0.90
-B: 900 | ME: 0.39 | ACC: 0.90
-B: 1000 | ME: 0.38 | ACC: 0.90
-B: 1100 | ME: 0.38 | ACC: 0.90
-B: 1200 | ME: 0.37 | ACC: 0.91
-B: 1300 | ME: 0.37 | ACC: 0.90
-B: 1400 | ME: 0.37 | ACC: 0.91
-B: 1500 | ME: 0.36 | ACC: 0.91
-B: 1600 | ME: 0.36 | ACC: 0.91
-B: 1700 | ME: 0.35 | ACC: 0.91
-B: 1800 | ME: 0.35 | ACC: 0.91
-B: 0 | ME: 0.35 | ACC: 0.91
-B: 100 | ME: 0.35 | ACC: 0.91
-B: 200 | ME: 0.34 | ACC: 0.91
-B: 300 | ME: 0.34 | ACC: 0.91
-B: 400 | ME: 0.34 | ACC: 0.91
-B: 500 | ME: 0.33 | ACC: 0.91
-B: 600 | ME: 0.33 | ACC: 0.91
-B: 700 | ME: 0.33 | ACC: 0.91
-B: 800 | ME: 0.33 | ACC: 0.91
-B: 900 | ME: 0.32 | ACC: 0.91
-B: 1000 | ME: 0.32 | ACC: 0.91
-B: 1100 | ME: 0.32 | ACC: 0.92
-B: 1200 | ME: 0.32 | ACC: 0.92
-B: 1300 | ME: 0.31 | ACC: 0.92
-B: 1400 | ME: 0.31 | ACC: 0.92
-B: 1500 | ME: 0.31 | ACC: 0.92
-B: 1600 | ME: 0.31 | ACC: 0.92
-B: 1700 | ME: 0.31 | ACC: 0.92
-B: 1800 | ME: 0.31 | ACC: 0.92
-B: 0 | ME: 0.30 | ACC: 0.92
-B: 100 | ME: 0.30 | ACC: 0.92
-B: 200 | ME: 0.30 | ACC: 0.92
-B: 300 | ME: 0.30 | ACC: 0.92
-B: 400 | ME: 0.30 | ACC: 0.92
-B: 500 | ME: 0.30 | ACC: 0.92
+&lt;pre&gt;B: 0 | ME: 2.36 | ACC: 0.13
+B: 100 | ME: 1.91 | ACC: 0.59
+B: 200 | ME: 1.60 | ACC: 0.68
+B: 300 | ME: 1.38 | ACC: 0.74
+B: 400 | ME: 1.20 | ACC: 0.78
+B: 500 | ME: 1.07 | ACC: 0.80
+B: 600 | ME: 0.96 | ACC: 0.82
+B: 700 | ME: 0.87 | ACC: 0.84
+B: 800 | ME: 0.81 | ACC: 0.84
+B: 900 | ME: 0.75 | ACC: 0.85
+B: 1000 | ME: 0.70 | ACC: 0.86
+B: 1100 | ME: 0.66 | ACC: 0.86
+B: 1200 | ME: 0.63 | ACC: 0.86
+B: 1300 | ME: 0.60 | ACC: 0.87
+B: 1400 | ME: 0.58 | ACC: 0.87
+B: 1500 | ME: 0.56 | ACC: 0.87
+B: 1600 | ME: 0.54 | ACC: 0.88
+B: 1700 | ME: 0.52 | ACC: 0.88
+B: 1800 | ME: 0.50 | ACC: 0.88
+B: 0 | ME: 0.49 | ACC: 0.88
+B: 100 | ME: 0.48 | ACC: 0.88
+B: 200 | ME: 0.47 | ACC: 0.88
+B: 300 | ME: 0.46 | ACC: 0.89
+B: 400 | ME: 0.45 | ACC: 0.89
+B: 500 | ME: 0.44 | ACC: 0.89
+B: 600 | ME: 0.43 | ACC: 0.89
+B: 700 | ME: 0.42 | ACC: 0.89
+B: 800 | ME: 0.42 | ACC: 0.89
+B: 900 | ME: 0.41 | ACC: 0.90
+B: 1000 | ME: 0.40 | ACC: 0.90
+B: 1100 | ME: 0.40 | ACC: 0.90
+B: 1200 | ME: 0.39 | ACC: 0.90
+B: 1300 | ME: 0.39 | ACC: 0.90
+B: 1400 | ME: 0.38 | ACC: 0.90
+B: 1500 | ME: 0.38 | ACC: 0.90
+B: 1600 | ME: 0.37 | ACC: 0.90
+B: 1700 | ME: 0.37 | ACC: 0.90
+B: 1800 | ME: 0.37 | ACC: 0.90
+B: 0 | ME: 0.36 | ACC: 0.90
+B: 100 | ME: 0.36 | ACC: 0.90
+B: 200 | ME: 0.36 | ACC: 0.90
+B: 300 | ME: 0.36 | ACC: 0.90
+B: 400 | ME: 0.35 | ACC: 0.90
+B: 500 | ME: 0.35 | ACC: 0.90
+B: 600 | ME: 0.35 | ACC: 0.91
+B: 700 | ME: 0.34 | ACC: 0.91
+B: 800 | ME: 0.34 | ACC: 0.91
+B: 900 | ME: 0.34 | ACC: 0.91
+B: 1000 | ME: 0.33 | ACC: 0.91
+B: 1100 | ME: 0.33 | ACC: 0.91
+B: 1200 | ME: 0.33 | ACC: 0.91
+B: 1300 | ME: 0.33 | ACC: 0.91
+B: 1400 | ME: 0.33 | ACC: 0.91
+B: 1500 | ME: 0.32 | ACC: 0.91
+B: 1600 | ME: 0.32 | ACC: 0.91
+B: 1700 | ME: 0.32 | ACC: 0.91
+B: 1800 | ME: 0.32 | ACC: 0.91
+B: 0 | ME: 0.32 | ACC: 0.91
+B: 100 | ME: 0.32 | ACC: 0.91
+B: 200 | ME: 0.31 | ACC: 0.91
+B: 300 | ME: 0.31 | ACC: 0.91
+B: 400 | ME: 0.31 | ACC: 0.91
+B: 500 | ME: 0.31 | ACC: 0.91
+B: 600 | ME: 0.31 | ACC: 0.91
+B: 700 | ME: 0.31 | ACC: 0.91
+B: 800 | ME: 0.31 | ACC: 0.91
+B: 900 | ME: 0.30 | ACC: 0.91
+B: 1000 | ME: 0.30 | ACC: 0.91
+B: 1100 | ME: 0.30 | ACC: 0.91
+B: 1200 | ME: 0.30 | ACC: 0.91
+B: 1300 | ME: 0.30 | ACC: 0.91
+B: 1400 | ME: 0.30 | ACC: 0.91
+B: 1500 | ME: 0.30 | ACC: 0.92
+B: 1600 | ME: 0.30 | ACC: 0.91
+B: 1700 | ME: 0.29 | ACC: 0.91
+B: 1800 | ME: 0.29 | ACC: 0.92
+B: 0 | ME: 0.29 | ACC: 0.92
+B: 100 | ME: 0.29 | ACC: 0.92
+B: 200 | ME: 0.29 | ACC: 0.92
+B: 300 | ME: 0.29 | ACC: 0.92
+B: 400 | ME: 0.29 | ACC: 0.92
+B: 500 | ME: 0.29 | ACC: 0.92
 B: 600 | ME: 0.29 | ACC: 0.92
 B: 700 | ME: 0.29 | ACC: 0.92
 B: 800 | ME: 0.29 | ACC: 0.92
-B: 900 | ME: 0.29 | ACC: 0.92
-B: 1000 | ME: 0.29 | ACC: 0.92
-B: 1100 | ME: 0.29 | ACC: 0.92
-B: 1200 | ME: 0.29 | ACC: 0.92
+B: 900 | ME: 0.28 | ACC: 0.92
+B: 1000 | ME: 0.28 | ACC: 0.92
+B: 1100 | ME: 0.28 | ACC: 0.92
+B: 1200 | ME: 0.28 | ACC: 0.92
 B: 1300 | ME: 0.28 | ACC: 0.92
 B: 1400 | ME: 0.28 | ACC: 0.92
 B: 1500 | ME: 0.28 | ACC: 0.92
@@ -1253,15 +1427,34 @@ B: 1700 | ME: 0.28 | ACC: 0.92
 B: 1800 | ME: 0.28 | ACC: 0.92
 B: 0 | ME: 0.28 | ACC: 0.92
 B: 100 | ME: 0.28 | ACC: 0.92
-B: 200 | ME: 0.27 | ACC: 0.93
-B: 300 | ME: 0.27 | ACC: 0.93
-B: 400 | ME: 0.27 | ACC: 0.93
-B: 500 | ME: 0.27 | ACC: 0.93
-B: 600 | ME: 0.27 | ACC: 0.93
-B: 700 | ME: 0.27 | ACC: 0.93
-B: 800 | ME: 0.27 | ACC: 0.93
-B: 900 | ME: 0.27 | ACC: 0.93
-B: 1000 | ME: 0.27 | ACC: 0.93
+B: 200 | ME: 0.27 | ACC: 0.92
+B: 300 | ME: 0.28 | ACC: 0.92
+B: 400 | ME: 0.27 | ACC: 0.92
+B: 500 | ME: 0.27 | ACC: 0.92
+B: 600 | ME: 0.27 | ACC: 0.92
+B: 700 | ME: 0.27 | ACC: 0.92
+B: 800 | ME: 0.27 | ACC: 0.92
+B: 900 | ME: 0.27 | ACC: 0.92
+B: 1000 | ME: 0.27 | ACC: 0.92
+B: 1100 | ME: 0.27 | ACC: 0.92
+B: 1200 | ME: 0.27 | ACC: 0.92
+B: 1300 | ME: 0.27 | ACC: 0.92
+B: 1400 | ME: 0.27 | ACC: 0.92
+B: 1500 | ME: 0.27 | ACC: 0.92
+B: 1600 | ME: 0.27 | ACC: 0.92
+B: 1700 | ME: 0.27 | ACC: 0.92
+B: 1800 | ME: 0.27 | ACC: 0.92
+B: 0 | ME: 0.26 | ACC: 0.92
+B: 100 | ME: 0.26 | ACC: 0.92
+B: 200 | ME: 0.26 | ACC: 0.92
+B: 300 | ME: 0.26 | ACC: 0.92
+B: 400 | ME: 0.26 | ACC: 0.92
+B: 500 | ME: 0.26 | ACC: 0.93
+B: 600 | ME: 0.26 | ACC: 0.92
+B: 700 | ME: 0.26 | ACC: 0.92
+B: 800 | ME: 0.26 | ACC: 0.92
+B: 900 | ME: 0.26 | ACC: 0.93
+B: 1000 | ME: 0.26 | ACC: 0.93
 B: 1100 | ME: 0.26 | ACC: 0.93
 B: 1200 | ME: 0.26 | ACC: 0.93
 B: 1300 | ME: 0.26 | ACC: 0.93
@@ -1270,11 +1463,11 @@ B: 1500 | ME: 0.26 | ACC: 0.93
 B: 1600 | ME: 0.26 | ACC: 0.93
 B: 1700 | ME: 0.26 | ACC: 0.93
 B: 1800 | ME: 0.26 | ACC: 0.93
-B: 0 | ME: 0.26 | ACC: 0.93
-B: 100 | ME: 0.26 | ACC: 0.93
-B: 200 | ME: 0.26 | ACC: 0.93
-B: 300 | ME: 0.26 | ACC: 0.93
-B: 400 | ME: 0.26 | ACC: 0.93
+B: 0 | ME: 0.25 | ACC: 0.93
+B: 100 | ME: 0.25 | ACC: 0.93
+B: 200 | ME: 0.25 | ACC: 0.93
+B: 300 | ME: 0.25 | ACC: 0.93
+B: 400 | ME: 0.25 | ACC: 0.93
 B: 500 | ME: 0.25 | ACC: 0.93
 B: 600 | ME: 0.25 | ACC: 0.93
 B: 700 | ME: 0.25 | ACC: 0.93
@@ -1286,6 +1479,25 @@ B: 1200 | ME: 0.25 | ACC: 0.93
 B: 1300 | ME: 0.25 | ACC: 0.93
 B: 1400 | ME: 0.25 | ACC: 0.93
 B: 1500 | ME: 0.25 | ACC: 0.93
+B: 1600 | ME: 0.25 | ACC: 0.93
+B: 1700 | ME: 0.25 | ACC: 0.93
+B: 1800 | ME: 0.25 | ACC: 0.93
+B: 0 | ME: 0.25 | ACC: 0.93
+B: 100 | ME: 0.25 | ACC: 0.93
+B: 200 | ME: 0.25 | ACC: 0.93
+B: 300 | ME: 0.25 | ACC: 0.93
+B: 400 | ME: 0.25 | ACC: 0.93
+B: 500 | ME: 0.24 | ACC: 0.93
+B: 600 | ME: 0.24 | ACC: 0.93
+B: 700 | ME: 0.24 | ACC: 0.93
+B: 800 | ME: 0.24 | ACC: 0.93
+B: 900 | ME: 0.24 | ACC: 0.93
+B: 1000 | ME: 0.24 | ACC: 0.93
+B: 1100 | ME: 0.24 | ACC: 0.93
+B: 1200 | ME: 0.24 | ACC: 0.93
+B: 1300 | ME: 0.24 | ACC: 0.93
+B: 1400 | ME: 0.24 | ACC: 0.93
+B: 1500 | ME: 0.24 | ACC: 0.93
 B: 1600 | ME: 0.24 | ACC: 0.93
 B: 1700 | ME: 0.24 | ACC: 0.93
 B: 1800 | ME: 0.24 | ACC: 0.93
@@ -1299,72 +1511,15 @@ B: 600 | ME: 0.24 | ACC: 0.93
 B: 700 | ME: 0.24 | ACC: 0.93
 B: 800 | ME: 0.24 | ACC: 0.93
 B: 900 | ME: 0.24 | ACC: 0.93
-B: 1000 | ME: 0.23 | ACC: 0.93
-B: 1100 | ME: 0.23 | ACC: 0.94
-B: 1200 | ME: 0.23 | ACC: 0.94
-B: 1300 | ME: 0.23 | ACC: 0.94
-B: 1400 | ME: 0.23 | ACC: 0.94
-B: 1500 | ME: 0.23 | ACC: 0.94
-B: 1600 | ME: 0.23 | ACC: 0.94
-B: 1700 | ME: 0.23 | ACC: 0.94
-B: 1800 | ME: 0.23 | ACC: 0.94
-B: 0 | ME: 0.23 | ACC: 0.94
-B: 100 | ME: 0.23 | ACC: 0.94
-B: 200 | ME: 0.23 | ACC: 0.94
-B: 300 | ME: 0.23 | ACC: 0.94
-B: 400 | ME: 0.23 | ACC: 0.94
-B: 500 | ME: 0.23 | ACC: 0.94
-B: 600 | ME: 0.23 | ACC: 0.94
-B: 700 | ME: 0.22 | ACC: 0.94
-B: 800 | ME: 0.23 | ACC: 0.94
-B: 900 | ME: 0.22 | ACC: 0.94
-B: 1000 | ME: 0.22 | ACC: 0.94
-B: 1100 | ME: 0.22 | ACC: 0.94
-B: 1200 | ME: 0.22 | ACC: 0.94
-B: 1300 | ME: 0.22 | ACC: 0.94
-B: 1400 | ME: 0.22 | ACC: 0.94
-B: 1500 | ME: 0.22 | ACC: 0.94
-B: 1600 | ME: 0.22 | ACC: 0.94
-B: 1700 | ME: 0.22 | ACC: 0.94
-B: 1800 | ME: 0.22 | ACC: 0.94
-B: 0 | ME: 0.22 | ACC: 0.94
-B: 100 | ME: 0.22 | ACC: 0.94
-B: 200 | ME: 0.22 | ACC: 0.94
-B: 300 | ME: 0.22 | ACC: 0.94
-B: 400 | ME: 0.22 | ACC: 0.94
-B: 500 | ME: 0.22 | ACC: 0.94
-B: 600 | ME: 0.22 | ACC: 0.94
-B: 700 | ME: 0.21 | ACC: 0.94
-B: 800 | ME: 0.22 | ACC: 0.94
-B: 900 | ME: 0.21 | ACC: 0.94
-B: 1000 | ME: 0.21 | ACC: 0.94
-B: 1100 | ME: 0.21 | ACC: 0.94
-B: 1200 | ME: 0.21 | ACC: 0.94
-B: 1300 | ME: 0.21 | ACC: 0.94
-B: 1400 | ME: 0.21 | ACC: 0.94
-B: 1500 | ME: 0.21 | ACC: 0.94
-B: 1600 | ME: 0.21 | ACC: 0.94
-B: 1700 | ME: 0.21 | ACC: 0.94
-B: 1800 | ME: 0.21 | ACC: 0.94
-B: 0 | ME: 0.21 | ACC: 0.94
-B: 100 | ME: 0.21 | ACC: 0.94
-B: 200 | ME: 0.21 | ACC: 0.94
-B: 300 | ME: 0.21 | ACC: 0.94
-B: 400 | ME: 0.21 | ACC: 0.94
-B: 500 | ME: 0.21 | ACC: 0.94
-B: 600 | ME: 0.21 | ACC: 0.94
-B: 700 | ME: 0.21 | ACC: 0.94
-B: 800 | ME: 0.21 | ACC: 0.94
-B: 900 | ME: 0.20 | ACC: 0.94
-B: 1000 | ME: 0.20 | ACC: 0.94
-B: 1100 | ME: 0.20 | ACC: 0.94
-B: 1200 | ME: 0.20 | ACC: 0.94
-B: 1300 | ME: 0.20 | ACC: 0.94
-B: 1400 | ME: 0.20 | ACC: 0.94
-B: 1500 | ME: 0.20 | ACC: 0.94
-B: 1600 | ME: 0.20 | ACC: 0.94
-B: 1700 | ME: 0.20 | ACC: 0.94
-B: 1800 | ME: 0.20 | ACC: 0.94
+B: 1000 | ME: 0.24 | ACC: 0.93
+B: 1100 | ME: 0.24 | ACC: 0.93
+B: 1200 | ME: 0.24 | ACC: 0.93
+B: 1300 | ME: 0.24 | ACC: 0.93
+B: 1400 | ME: 0.24 | ACC: 0.93
+B: 1500 | ME: 0.24 | ACC: 0.93
+B: 1600 | ME: 0.23 | ACC: 0.93
+B: 1700 | ME: 0.23 | ACC: 0.93
+B: 1800 | ME: 0.23 | ACC: 0.93
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1413,7 +1568,116 @@ B: 1800 | ME: 0.20 | ACC: 0.94
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
 }
@@ -1494,12 +1758,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -1512,27 +1784,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -1990,6 +2274,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph &gt; img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -2150,6 +2437,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -2166,16 +2457,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -2191,6 +2490,10 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -2241,8 +2544,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -2649,7 +2959,116 @@ h6:hover .anchor-link {
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
 }
@@ -2730,12 +3149,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -2748,27 +3175,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -3226,6 +3665,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph &gt; img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -3386,6 +3828,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -3402,16 +3848,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -3427,6 +3881,10 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -3477,8 +3935,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -3705,10 +4170,9 @@ h6:hover .anchor-link {
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h3 id="1)-The-Model:"&gt;1) The Model:&lt;a class="anchor-link" href="#1)-The-Model:"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;We will use an extension of y = mx + b taught in algebra class.  We will add in mx terms for each weight m and parameter x.  I will refer to weights as theta from now on.&lt;/p&gt;
 &lt;p&gt;So we have&lt;/p&gt;
-&lt;p&gt;\begin{equation*}
+\begin{equation*}
 h_{ \theta}(x) = \theta_{1} * x_{1} + \theta_{2} * x_{2} + ... \theta_{j} * x_{j} + b
-\end{equation*}&lt;/p&gt;
-&lt;p&gt;We will use our guesses at the weights with our x_training values to generate a prediction for the price of each house.&lt;/p&gt;
+\end{equation*}&lt;p&gt;We will use our guesses at the weights with our x_training values to generate a prediction for the price of each house.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -3755,9 +4219,9 @@ To do this, we will need to add a column of all 1's to our x_training values.&lt
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h3 id="3)-Calculate-Predictions"&gt;3) Calculate Predictions&lt;a class="anchor-link" href="#3)-Calculate-Predictions"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Based on our initial guesses of the weights, we can calculate our first predictions!  Using our model from above in conjunction with converting the intercept as a weight and some matrix math...&lt;/p&gt;
-&lt;p&gt;\begin{equation*}
+\begin{equation*}
 h_{ \theta}(x) = \theta^T * X = \theta_{0} * x_{0} + \theta_{1} * x_{1} + \theta_{2} * x_{2} + ... \theta_{j} * x_{j}
-\end{equation*}&lt;/p&gt;
+\end{equation*}
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -3787,9 +4251,9 @@ h_{ \theta}(x) = \theta^T * X = \theta_{0} * x_{0} + \theta_{1} * x_{1} + \theta
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;\begin{equation*}
+\begin{equation*}
 Cost = \frac{1}{2m} * \sum_{i=1}^m (h_{ \theta}(x^i) - y^i)^2
-\end{equation*}&lt;/p&gt;
+\end{equation*}
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -3834,9 +4298,9 @@ Cost = \frac{1}{2m} * \sum_{i=1}^m (h_{ \theta}(x^i) - y^i)^2
  \frac{\partial}{\partial \theta_{j}}CE = \sum_{i=1}^m[ (h_{ \theta}(x^i) - y^i) * x^i_{j} ]
  \end{equation*}&lt;/p&gt;
 &lt;p&gt;As the heart of gradient descent, we will run updates across all thetas, where we subract out the derivative with respect to each individual theta.  The derivative is multiplied by a stepping rate (Learning Rate, alpha) to fine tune the steps.&lt;/p&gt;
-&lt;p&gt;\begin{equation*}
+\begin{equation*}
 \theta_{j} = \theta_{j} - \alpha * \frac{\partial}{\partial \theta_{j}}CE = \theta_{j} - \alpha * \sum_{i=1}^m[ (h_{ \theta}(x^i) - y^i) * x^i_{j} ]
-\end{equation*}&lt;/p&gt;
+\end{equation*}
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -3916,9 +4380,9 @@ EPOCH#500: MSE of 22.49
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;We can check that our model is working properly using the normal equation&lt;/p&gt;
-&lt;p&gt;\begin{equation*}
+\begin{equation*}
 \theta = (X^T * X)^{-1} * X^T * y
-\end{equation*}&lt;/p&gt;
+\end{equation*}
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -3991,7 +4455,116 @@ EPOCH#500: MSE of 22.49
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
 }
@@ -4072,12 +4645,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -4090,27 +4671,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -4568,6 +5161,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph &gt; img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -4728,6 +5324,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -4744,16 +5344,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -4769,6 +5377,10 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -4819,8 +5431,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -5122,10 +5741,9 @@ Review:  A review's is the words of the review, represented as numbers in a nump
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Here-is-the-function-we-will-use-to-calculate-the-error-for-the-model."&gt;Here is the function we will use to calculate the error for the model.&lt;a class="anchor-link" href="#Here-is-the-function-we-will-use-to-calculate-the-error-for-the-model."&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;\begin{equation*}
+&lt;h3 id="Here-is-the-function-we-will-use-to-calculate-the-error-for-the-model."&gt;Here is the function we will use to calculate the error for the model.&lt;a class="anchor-link" href="#Here-is-the-function-we-will-use-to-calculate-the-error-for-the-model."&gt;¶&lt;/a&gt;&lt;/h3&gt;\begin{equation*}
 CE = \frac{1}{m} * \sum_{i=1}^m [ -y^i * log(h_{ \theta}(x^i)) - (1 - y^i) * log(1 - h_{ \theta}(x^i) )]
-\end{equation*}&lt;/p&gt;
-&lt;p&gt;Where h_theta(x) is the prediction from theta transpose x that we ran through the squasher function.  And i is the ith review.&lt;/p&gt;
+\end{equation*}&lt;p&gt;Where h_theta(x) is the prediction from theta transpose x that we ran through the squasher function.  And i is the ith review.&lt;/p&gt;
 &lt;p&gt;This error function calculates what is known as the cross entropy loss.  Taking the log of the difference is a good way to evaulate model effectiveness.  In the worst case scenario where a real value is actually a 1 [positive], and our model tells us 99.9999% certainty that the prediction is 0, we will have an error that approaches infinity.  Thus severely punishing the model for having the worst guess.&lt;/p&gt;
 &lt;p&gt;Later on when we run the model, we will run batches of update theta functions.  At the core of these functions, we will be subtracting the first derivative with respect to theta_j of our CE function.  Where j indicates the jth parameter&lt;/p&gt;
 &lt;/div&gt;
@@ -5156,9 +5774,9 @@ CE = \frac{1}{m} * \sum_{i=1}^m [ -y^i * log(h_{ \theta}(x^i)) - (1 - y^i) * log
  \frac{\partial}{\partial \theta_{j}}CE = \sum_{i=1}^m[ (h_{ \theta}(x^i) - y^i) * x^i_{j} ]
  \end{equation*}&lt;/p&gt;
 &lt;p&gt;As the heart of gradient descent, we will run updates across all thetas, where we subract out the derivative with respect to each individual theta.  The derivative is multiplied by a stepping rate (Learning Rate, alpha) to fine tune the steps.&lt;/p&gt;
-&lt;p&gt;\begin{equation*}
+\begin{equation*}
 \theta_{j} = \theta_{j} - \alpha * \frac{\partial}{\partial \theta_{j}}CE = \theta_{j} - \alpha * \sum_{i=1}^m[ (h_{ \theta}(x^i) - y^i) * x^i_{j} ]
-\end{equation*}&lt;/p&gt;
+\end{equation*}
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -5253,7 +5871,116 @@ CE = \frac{1}{m} * \sum_{i=1}^m [ -y^i * log(h_{ \theta}(x^i)) - (1 - y^i) * log
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
 }
@@ -5334,12 +6061,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -5352,27 +6087,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -5830,6 +6577,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph &gt; img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -5990,6 +6740,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -6006,16 +6760,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -6031,6 +6793,10 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -6081,8 +6847,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -6978,9 +7751,9 @@ ynqj7ffF3rcJxwbh5/u3eMMkLyT8/s8P6vs4S70Ffw9rpaiISEgEashFRETyp0AXEQkJBbqISEgo
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;$$
+$$
 (trans{X}X)^{-1} trans{X}y
-$$&lt;/p&gt;
+$$
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -7055,12 +7828,121 @@ dtype: float64
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="python"></category></entry><entry><title>Variable Definitions</title><link href="https://niko79542.github.io/variables.html" rel="alternate"></link><published>2018-01-01T11:54:00-08:00</published><updated>2018-01-01T11:54:00-08:00</updated><author><name>Niko Skoularikis</name></author><id>tag:niko79542.github.io,2018-01-01:variables.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="python"></category></entry><entry><title>Variable Notation</title><link href="https://niko79542.github.io/variable-notation.html" rel="alternate"></link><published>2018-01-01T11:54:00-08:00</published><updated>2018-01-01T11:54:00-08:00</updated><author><name>Niko Skoularikis</name></author><id>tag:niko79542.github.io,2018-01-01:variable-notation.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
 }
@@ -7141,12 +8023,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -7159,27 +8049,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -7637,6 +8539,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph &gt; img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -7797,6 +8702,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -7813,16 +8722,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -7838,6 +8755,10 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -7888,8 +8809,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -8031,7 +8959,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Let's define some variables to use throughout the rest of the Notebook&lt;/p&gt;
+&lt;p&gt;Let's define some notation to use throughout the rest of this blog.  These come from Elements of Statistical Learning by Jerome H. Friedman, Robert Tibshirani, and Trevor H.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
