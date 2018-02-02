@@ -25,14 +25,15 @@ AUTHOR_FEED_RSS = None
 
 #LINKS = (
 #    ('Resume', 'https://res.cloudinary.com/dlpclqzwk/image/upload/v1485353466/20170124_Software_Engineer_lvzwbe.pdf'),
+#    ('home', 'http://www.nikoskoularikis.com/#/portfolio'),
 #)
 
 # Social widget
 
 ICONS = [
-    ('github', 'https://github.com/niko79542'),
+    ('github', 'https://github.com/niko79542/niko79542.github.io'),
     ('linkedin', 'https://www.linkedin.com/in/nikos1'),
-    ('home', 'http://www.nikoskoularikis.com/#/portfolio'),
+    
 ]
 
 DEFAULT_PAGINATION = 5
