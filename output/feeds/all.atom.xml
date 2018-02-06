@@ -1,5 +1,1461 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Real Data Talk</title><link href="https://niko79542.github.io/" rel="alternate"></link><link href="https://niko79542.github.io/feeds/all.atom.xml" rel="self"></link><id>https://niko79542.github.io/</id><updated>2018-02-05T15:22:00-08:00</updated><entry><title>[Boltzman] - Boston Home Prices - (keras)</title><link href="https://niko79542.github.io/boston-keras.html" rel="alternate"></link><published>2018-02-05T15:22:00-08:00</published><updated>2018-02-05T15:22:00-08:00</updated><author><name>Niko Skoularikis</name></author><id>tag:niko79542.github.io,2018-02-05:boston-keras.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Real Data Talk</title><link href="https://niko79542.github.io/" rel="alternate"></link><link href="https://niko79542.github.io/feeds/all.atom.xml" rel="self"></link><id>https://niko79542.github.io/</id><updated>2018-02-05T16:20:00-08:00</updated><entry><title>[Boltzman] - IMDB - (keras)</title><link href="https://niko79542.github.io/imdb-keras.html" rel="alternate"></link><published>2018-02-05T16:20:00-08:00</published><updated>2018-02-05T16:20:00-08:00</updated><author><name>Niko Skoularikis</name></author><id>tag:niko79542.github.io,2018-02-05:imdb-keras.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+*
+* IPython notebook
+*
+*/
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
+}
+/* The following styles are deprecated an will be removed in a future version */
+.ansibold {
+  font-weight: bold;
+}
+/* use dark versions for foreground, to improve visibility */
+.ansiblack {
+  color: black;
+}
+.ansired {
+  color: darkred;
+}
+.ansigreen {
+  color: darkgreen;
+}
+.ansiyellow {
+  color: #c4a000;
+}
+.ansiblue {
+  color: darkblue;
+}
+.ansipurple {
+  color: darkviolet;
+}
+.ansicyan {
+  color: steelblue;
+}
+.ansigray {
+  color: gray;
+}
+/* and light for background, for the same reason */
+.ansibgblack {
+  background-color: black;
+}
+.ansibgred {
+  background-color: red;
+}
+.ansibggreen {
+  background-color: green;
+}
+.ansibgyellow {
+  background-color: yellow;
+}
+.ansibgblue {
+  background-color: blue;
+}
+.ansibgpurple {
+  background-color: magenta;
+}
+.ansibgcyan {
+  background-color: cyan;
+}
+.ansibggray {
+  background-color: gray;
+}
+div.cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  width: 100%;
+  padding: 5px;
+  /* This acts as a spacer between cells, that is outside the border */
+  margin: 0px;
+  outline: none;
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
+}
+div.cell.jupyter-soft-selected {
+  border-left-color: #E3F2FD;
+  border-left-width: 1px;
+  padding-left: 5px;
+  border-right-color: #E3F2FD;
+  border-right-width: 1px;
+  background: #E3F2FD;
+}
+@media print {
+  div.cell.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
+  border-color: #ababab;
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
+}
+@media print {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+.edit_mode div.cell.selected {
+  border-color: #66BB6A;
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
+}
+@media print {
+  .edit_mode div.cell.selected {
+    border-color: transparent;
+  }
+}
+.prompt {
+  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
+  min-width: 14ex;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace;
+  text-align: right;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+  /* Don't highlight prompt number selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Use default cursor */
+  cursor: default;
+}
+@media (max-width: 540px) {
+  .prompt {
+    text-align: left;
+  }
+}
+div.inner_cell {
+  min-width: 0;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_area {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  background: #f7f7f7;
+  line-height: 1.21429em;
+}
+/* This is needed so that empty prompt areas can collapse to zero height when there
+   is no content in the output_subarea and the prompt. The main purpose of this is
+   to make sure that empty JavaScript output_subareas have no height. */
+div.prompt:empty {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+div.unrecognized_cell {
+  padding: 5px 5px 5px 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.unrecognized_cell .inner_cell {
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+  border: 1px solid #cfcfcf;
+  background: #eaeaea;
+}
+div.unrecognized_cell .inner_cell a {
+  color: inherit;
+  text-decoration: none;
+}
+div.unrecognized_cell .inner_cell a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+@media (max-width: 540px) {
+  div.unrecognized_cell &gt; div.prompt {
+    display: none;
+  }
+}
+div.code_cell {
+  /* avoid page breaking on code cells when printing */
+}
+@media print {
+  div.code_cell {
+    page-break-inside: avoid;
+  }
+}
+/* any special styling for code cells that are currently running goes here */
+div.input {
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.input {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_prompt {
+  color: #303F9F;
+  border-top: 1px solid transparent;
+}
+div.input_area &gt; div.highlight {
+  margin: 0.4em;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+div.input_area &gt; div.highlight &gt; pre {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+/* The following gets added to the &lt;head&gt; if it is detected that the user has a
+ * monospace font with inconsistent normal/bold/italic height.  See
+ * notebookmain.js.  Such fonts will have keywords vertically offset with
+ * respect to the rest of the text.  The user should select a better font.
+ * See: https://github.com/ipython/ipython/issues/1503
+ *
+ * .CodeMirror span {
+ *      vertical-align: bottom;
+ * }
+ */
+.CodeMirror {
+  line-height: 1.21429em;
+  /* Changed from 1em to our global default */
+  font-size: 14px;
+  height: auto;
+  /* Changed to auto to autogrow */
+  background: none;
+  /* Changed from white to allow our bg to show through */
+}
+.CodeMirror-scroll {
+  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
+  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.CodeMirror-lines {
+  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
+  /* we have set a different line-height and want this to scale with that. */
+  padding: 0.4em;
+}
+.CodeMirror-linenumber {
+  padding: 0 8px 0 4px;
+}
+.CodeMirror-gutters {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.CodeMirror pre {
+  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
+  /* .CodeMirror-lines */
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev &lt;Maniac@SoftwareManiacs.Org&gt;
+Adapted from GitHub theme
+
+*/
+.highlight-base {
+  color: #000;
+}
+.highlight-variable {
+  color: #000;
+}
+.highlight-variable-2 {
+  color: #1a1a1a;
+}
+.highlight-variable-3 {
+  color: #333333;
+}
+.highlight-string {
+  color: #BA2121;
+}
+.highlight-comment {
+  color: #408080;
+  font-style: italic;
+}
+.highlight-number {
+  color: #080;
+}
+.highlight-atom {
+  color: #88F;
+}
+.highlight-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.highlight-builtin {
+  color: #008000;
+}
+.highlight-error {
+  color: #f00;
+}
+.highlight-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.highlight-meta {
+  color: #AA22FF;
+}
+/* previously not defined, copying from default codemirror */
+.highlight-def {
+  color: #00f;
+}
+.highlight-string-2 {
+  color: #f50;
+}
+.highlight-qualifier {
+  color: #555;
+}
+.highlight-bracket {
+  color: #997;
+}
+.highlight-tag {
+  color: #170;
+}
+.highlight-attribute {
+  color: #00c;
+}
+.highlight-header {
+  color: blue;
+}
+.highlight-quote {
+  color: #090;
+}
+.highlight-link {
+  color: #00c;
+}
+/* apply the same style to codemirror */
+.cm-s-ipython span.cm-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-atom {
+  color: #88F;
+}
+.cm-s-ipython span.cm-number {
+  color: #080;
+}
+.cm-s-ipython span.cm-def {
+  color: #00f;
+}
+.cm-s-ipython span.cm-variable {
+  color: #000;
+}
+.cm-s-ipython span.cm-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-variable-2 {
+  color: #1a1a1a;
+}
+.cm-s-ipython span.cm-variable-3 {
+  color: #333333;
+}
+.cm-s-ipython span.cm-comment {
+  color: #408080;
+  font-style: italic;
+}
+.cm-s-ipython span.cm-string {
+  color: #BA2121;
+}
+.cm-s-ipython span.cm-string-2 {
+  color: #f50;
+}
+.cm-s-ipython span.cm-meta {
+  color: #AA22FF;
+}
+.cm-s-ipython span.cm-qualifier {
+  color: #555;
+}
+.cm-s-ipython span.cm-builtin {
+  color: #008000;
+}
+.cm-s-ipython span.cm-bracket {
+  color: #997;
+}
+.cm-s-ipython span.cm-tag {
+  color: #170;
+}
+.cm-s-ipython span.cm-attribute {
+  color: #00c;
+}
+.cm-s-ipython span.cm-header {
+  color: blue;
+}
+.cm-s-ipython span.cm-quote {
+  color: #090;
+}
+.cm-s-ipython span.cm-link {
+  color: #00c;
+}
+.cm-s-ipython span.cm-error {
+  color: #f00;
+}
+.cm-s-ipython span.cm-tab {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+/* class for the output area when it should be height-limited */
+div.output_scroll {
+  /* ideally, this would be max-height, but FF barfs all over that */
+  height: 24em;
+  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
+  width: 100%;
+  overflow: auto;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+/* output div while it is collapsed */
+div.output_collapsed {
+  margin: 0px;
+  padding: 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+div.out_prompt_overlay {
+  height: 100%;
+  padding: 0px 0.4em;
+  position: absolute;
+  border-radius: 2px;
+}
+div.out_prompt_overlay:hover {
+  /* use inner shadow to get border that is computed the same on WebKit/FF */
+  -webkit-box-shadow: inset 0 0 1px #000;
+  box-shadow: inset 0 0 1px #000;
+  background: rgba(240, 240, 240, 0.5);
+}
+div.output_prompt {
+  color: #D84315;
+}
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area 
+div.output_area 
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+div.output_area .mglyph &gt; img {
+  max-width: none;
+}
+/* This is needed to protect the pre formating from global settings such
+   as that of bootstrap */
+.output {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.output_area {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+div.output_area pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  color: black;
+  background-color: transparent;
+  border-radius: 0;
+}
+/* This class is for the output subarea inside the output_area and after
+   the prompt div. */
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+/* The rest of the output_* classes are for special styling of the different
+   output types */
+/* all text output has this class: */
+div.output_text {
+  text-align: left;
+  color: #000;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+}
+/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
+div.output_stderr {
+  background: #fdd;
+  /* very light red background for stderr */
+}
+div.output_latex {
+  text-align: left;
+}
+/* Empty output_javascript divs should have no height */
+div.output_javascript:empty {
+  padding: 0;
+}
+.js-error {
+  color: darkred;
+}
+/* raw_input styles */
+div.raw_input_container {
+  line-height: 1.21429em;
+  padding-top: 5px;
+}
+pre.raw_input_prompt {
+  /* nothing needed here. */
+}
+input.raw_input {
+  font-family: monospace;
+  font-size: inherit;
+  color: inherit;
+  width: auto;
+  /* make sure input baseline aligns with prompt */
+  vertical-align: baseline;
+  /* padding + margin = 0.5em between prompt and cursor */
+  padding: 0em 0.25em;
+  margin: 0em 0.25em;
+}
+input.raw_input:focus {
+  box-shadow: none;
+}
+p.p-space {
+  margin-bottom: 10px;
+}
+div.output_unrecognized {
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+}
+div.output_unrecognized a {
+  color: inherit;
+  text-decoration: none;
+}
+div.output_unrecognized a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+
+
+
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
+
+
+
+
+
+
+
+
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+
+
+
+
+
+.rendered_html pre,
+
+
+
+
+.rendered_html tr,
+.rendered_html th,
+
+
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+.rendered_html * + table {
+  margin-top: 1em;
+}
+
+.rendered_html * + p {
+  margin-top: 1em;
+}
+
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+
+.rendered_html img.unconfined,
+
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+div.text_cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.text_cell &gt; div.prompt {
+    display: none;
+  }
+}
+div.text_cell_render {
+  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
+  outline: none;
+  resize: none;
+  width: inherit;
+  border-style: none;
+  padding: 0.5em 0.5em 0.5em 0.4em;
+  color: #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+a.anchor-link:link {
+  text-decoration: none;
+  padding: 0px 20px;
+  visibility: hidden;
+}
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+  visibility: visible;
+}
+.text_cell.rendered .input_area {
+  display: none;
+}
+.text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
+.text_cell.unrendered .text_cell_render {
+  display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
+}
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.cm-header-1 {
+  font-size: 185.7%;
+}
+.cm-header-2 {
+  font-size: 157.1%;
+}
+.cm-header-3 {
+  font-size: 128.6%;
+}
+.cm-header-4 {
+  font-size: 110%;
+}
+.cm-header-5 {
+  font-size: 100%;
+  font-style: italic;
+}
+.cm-header-6 {
+  font-size: 100%;
+  font-style: italic;
+}
+&lt;/style&gt;
+&lt;style type="text/css"&gt;.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;
+&lt;style type="text/css"&gt;
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+&lt;/style&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="[Boltzman]---IMDB,-Logistic,-Keras"&gt;[Boltzman] - IMDB, Logistic, Keras&lt;a class="anchor-link" href="#[Boltzman]---IMDB,-Logistic,-Keras"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Just redoing the &lt;a href="https://niko79542.github.io/logistic.html"&gt;IMDB Logistic regression&lt;/a&gt; using Keras&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In [14]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;keras.datasets&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;imdb&lt;/span&gt;
+
+&lt;span class="n"&gt;TOP_N_WORDS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="n"&gt;_000&lt;/span&gt;
+&lt;span class="c1"&gt;# To speed up model, we will only analyze the most frequent TOP_N_WORDS words in all reviews.  &lt;/span&gt;
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x_test&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_test&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;imdb&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"imdb.npz"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                                      &lt;span class="n"&gt;num_words&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;TOP_N_WORDS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                                      &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In [15]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;word_vector&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;review&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zeros&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TOP_N_WORDS&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;word_index&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;review&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;word_index&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;
+    
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;vectorize_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x_is&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;word_vector&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;review&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;review&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;x_is&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="n"&gt;new_x_train&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vectorize_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x_train&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;new_x_test&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vectorize_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x_test&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In [16]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;keras.models&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Sequential&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;keras.layers&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Dense&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Activation&lt;/span&gt; 
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;keras.optimizers&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SGD&lt;/span&gt;
+
+
+&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Sequential&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;
+    &lt;span class="n"&gt;Dense&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;input_shape&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1001&lt;/span&gt;&lt;span class="p"&gt;,)),&lt;/span&gt;
+    &lt;span class="n"&gt;Activation&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'sigmoid'&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="n"&gt;optimizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SGD&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lr&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;0.01&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;optimizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;optimizer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;loss&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'binary_crossentropy'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;metrics&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'accuracy'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;new_x_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+    &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;batch_size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;128&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;validation_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_x_test&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_test&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;epochs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;Train on 25000 samples, validate on 25000 samples
+Epoch 1/100
+25000/25000 [==============================] - 1s 30us/step - loss: 0.6652 - acc: 0.5972 - val_loss: 0.6321 - val_acc: 0.6628
+Epoch 2/100
+25000/25000 [==============================] - 1s 27us/step - loss: 0.6041 - acc: 0.7079 - val_loss: 0.5843 - val_acc: 0.7311
+Epoch 3/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.5625 - acc: 0.7556 - val_loss: 0.5505 - val_acc: 0.7620
+Epoch 4/100
+25000/25000 [==============================] - 1s 29us/step - loss: 0.5324 - acc: 0.7790 - val_loss: 0.5254 - val_acc: 0.7784
+Epoch 5/100
+25000/25000 [==============================] - 1s 27us/step - loss: 0.5093 - acc: 0.7936 - val_loss: 0.5052 - val_acc: 0.7917
+Epoch 6/100
+25000/25000 [==============================] - 1s 28us/step - loss: 0.4910 - acc: 0.8032 - val_loss: 0.4891 - val_acc: 0.8000
+Epoch 7/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.4759 - acc: 0.8102 - val_loss: 0.4758 - val_acc: 0.8057
+Epoch 8/100
+25000/25000 [==============================] - 1s 27us/step - loss: 0.4634 - acc: 0.8152 - val_loss: 0.4648 - val_acc: 0.8097
+Epoch 9/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.4527 - acc: 0.8193 - val_loss: 0.4553 - val_acc: 0.8142
+Epoch 10/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.4435 - acc: 0.8228 - val_loss: 0.4469 - val_acc: 0.8165
+Epoch 11/100
+25000/25000 [==============================] - 1s 27us/step - loss: 0.4355 - acc: 0.8268 - val_loss: 0.4396 - val_acc: 0.8201
+Epoch 12/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.4283 - acc: 0.8312 - val_loss: 0.4333 - val_acc: 0.8222
+Epoch 13/100
+25000/25000 [==============================] - 1s 28us/step - loss: 0.4220 - acc: 0.8338 - val_loss: 0.4275 - val_acc: 0.8240
+Epoch 14/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.4162 - acc: 0.8354 - val_loss: 0.4223 - val_acc: 0.8264
+Epoch 15/100
+25000/25000 [==============================] - 1s 28us/step - loss: 0.4113 - acc: 0.8385 - val_loss: 0.4181 - val_acc: 0.8278
+Epoch 16/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.4064 - acc: 0.8400 - val_loss: 0.4134 - val_acc: 0.8296
+Epoch 17/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.4023 - acc: 0.8409 - val_loss: 0.4096 - val_acc: 0.8312
+Epoch 18/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3983 - acc: 0.8419 - val_loss: 0.4060 - val_acc: 0.8322
+Epoch 19/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3947 - acc: 0.8438 - val_loss: 0.4027 - val_acc: 0.8337
+Epoch 20/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3914 - acc: 0.8445 - val_loss: 0.3997 - val_acc: 0.8344
+Epoch 21/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.3882 - acc: 0.8452 - val_loss: 0.3968 - val_acc: 0.8365
+Epoch 22/100
+25000/25000 [==============================] - 1s 29us/step - loss: 0.3853 - acc: 0.8474 - val_loss: 0.3942 - val_acc: 0.8376
+Epoch 23/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3825 - acc: 0.8481 - val_loss: 0.3917 - val_acc: 0.8391
+Epoch 24/100
+25000/25000 [==============================] - 1s 29us/step - loss: 0.3799 - acc: 0.8488 - val_loss: 0.3894 - val_acc: 0.8393
+Epoch 25/100
+25000/25000 [==============================] - 1s 27us/step - loss: 0.3775 - acc: 0.8496 - val_loss: 0.3873 - val_acc: 0.8406
+Epoch 26/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3752 - acc: 0.8511 - val_loss: 0.3851 - val_acc: 0.8410
+Epoch 27/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.3730 - acc: 0.8508 - val_loss: 0.3832 - val_acc: 0.8422
+Epoch 28/100
+25000/25000 [==============================] - 1s 27us/step - loss: 0.3710 - acc: 0.8518 - val_loss: 0.3814 - val_acc: 0.8426
+Epoch 29/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3690 - acc: 0.8524 - val_loss: 0.3798 - val_acc: 0.8435
+Epoch 30/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3672 - acc: 0.8532 - val_loss: 0.3780 - val_acc: 0.8438
+Epoch 31/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3653 - acc: 0.8542 - val_loss: 0.3764 - val_acc: 0.8441
+Epoch 32/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3637 - acc: 0.8549 - val_loss: 0.3749 - val_acc: 0.8447
+Epoch 33/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3621 - acc: 0.8552 - val_loss: 0.3737 - val_acc: 0.8462
+Epoch 34/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3605 - acc: 0.8553 - val_loss: 0.3721 - val_acc: 0.8457
+Epoch 35/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3590 - acc: 0.8558 - val_loss: 0.3709 - val_acc: 0.8466
+Epoch 36/100
+25000/25000 [==============================] - 1s 27us/step - loss: 0.3576 - acc: 0.8565 - val_loss: 0.3696 - val_acc: 0.8470
+Epoch 37/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3562 - acc: 0.8570 - val_loss: 0.3684 - val_acc: 0.8474
+Epoch 38/100
+25000/25000 [==============================] - 1s 28us/step - loss: 0.3549 - acc: 0.8574 - val_loss: 0.3673 - val_acc: 0.8477
+Epoch 39/100
+25000/25000 [==============================] - 1s 28us/step - loss: 0.3536 - acc: 0.8578 - val_loss: 0.3662 - val_acc: 0.8485
+Epoch 40/100
+25000/25000 [==============================] - 1s 29us/step - loss: 0.3524 - acc: 0.8583 - val_loss: 0.3652 - val_acc: 0.8484
+Epoch 41/100
+25000/25000 [==============================] - 1s 27us/step - loss: 0.3513 - acc: 0.8588 - val_loss: 0.3641 - val_acc: 0.8492
+Epoch 42/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3501 - acc: 0.8590 - val_loss: 0.3632 - val_acc: 0.8498
+Epoch 43/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3490 - acc: 0.8595 - val_loss: 0.3621 - val_acc: 0.8500
+Epoch 44/100
+25000/25000 [==============================] - 1s 27us/step - loss: 0.3480 - acc: 0.8596 - val_loss: 0.3612 - val_acc: 0.8500
+Epoch 45/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3469 - acc: 0.8600 - val_loss: 0.3605 - val_acc: 0.8506
+Epoch 46/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3459 - acc: 0.8602 - val_loss: 0.3595 - val_acc: 0.8510
+Epoch 47/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3449 - acc: 0.8602 - val_loss: 0.3587 - val_acc: 0.8515
+Epoch 48/100
+25000/25000 [==============================] - 1s 27us/step - loss: 0.3440 - acc: 0.8608 - val_loss: 0.3580 - val_acc: 0.8516
+Epoch 49/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3431 - acc: 0.8616 - val_loss: 0.3572 - val_acc: 0.8516
+Epoch 50/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3423 - acc: 0.8615 - val_loss: 0.3564 - val_acc: 0.8516
+Epoch 51/100
+25000/25000 [==============================] - 1s 27us/step - loss: 0.3414 - acc: 0.8614 - val_loss: 0.3557 - val_acc: 0.8523
+Epoch 52/100
+25000/25000 [==============================] - 1s 27us/step - loss: 0.3406 - acc: 0.8622 - val_loss: 0.3552 - val_acc: 0.8530
+Epoch 53/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3398 - acc: 0.8619 - val_loss: 0.3544 - val_acc: 0.8522
+Epoch 54/100
+25000/25000 [==============================] - 1s 28us/step - loss: 0.3390 - acc: 0.8626 - val_loss: 0.3538 - val_acc: 0.8533
+Epoch 55/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.3382 - acc: 0.8626 - val_loss: 0.3533 - val_acc: 0.8525
+Epoch 56/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3376 - acc: 0.8635 - val_loss: 0.3527 - val_acc: 0.8528
+Epoch 57/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3368 - acc: 0.8635 - val_loss: 0.3518 - val_acc: 0.8534
+Epoch 58/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3361 - acc: 0.8643 - val_loss: 0.3513 - val_acc: 0.8544
+Epoch 59/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3354 - acc: 0.8643 - val_loss: 0.3507 - val_acc: 0.8546
+Epoch 60/100
+25000/25000 [==============================] - 1s 30us/step - loss: 0.3347 - acc: 0.8650 - val_loss: 0.3502 - val_acc: 0.8548
+Epoch 61/100
+25000/25000 [==============================] - 1s 28us/step - loss: 0.3341 - acc: 0.8649 - val_loss: 0.3497 - val_acc: 0.8552
+Epoch 62/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3335 - acc: 0.8649 - val_loss: 0.3491 - val_acc: 0.8552
+Epoch 63/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3328 - acc: 0.8650 - val_loss: 0.3486 - val_acc: 0.8556
+Epoch 64/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3322 - acc: 0.8661 - val_loss: 0.3481 - val_acc: 0.8554
+Epoch 65/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.3317 - acc: 0.8660 - val_loss: 0.3477 - val_acc: 0.8557
+Epoch 66/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.3311 - acc: 0.8662 - val_loss: 0.3472 - val_acc: 0.8560
+Epoch 67/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3305 - acc: 0.8660 - val_loss: 0.3468 - val_acc: 0.8564
+Epoch 68/100
+25000/25000 [==============================] - 1s 27us/step - loss: 0.3300 - acc: 0.8666 - val_loss: 0.3463 - val_acc: 0.8567
+Epoch 69/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3294 - acc: 0.8672 - val_loss: 0.3459 - val_acc: 0.8567
+Epoch 70/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.3289 - acc: 0.8670 - val_loss: 0.3456 - val_acc: 0.8566
+Epoch 71/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.3284 - acc: 0.8672 - val_loss: 0.3451 - val_acc: 0.8574
+Epoch 72/100
+25000/25000 [==============================] - 1s 28us/step - loss: 0.3279 - acc: 0.8673 - val_loss: 0.3447 - val_acc: 0.8573
+Epoch 73/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.3274 - acc: 0.8676 - val_loss: 0.3443 - val_acc: 0.8576
+Epoch 74/100
+25000/25000 [==============================] - 1s 27us/step - loss: 0.3269 - acc: 0.8679 - val_loss: 0.3440 - val_acc: 0.8570
+Epoch 75/100
+25000/25000 [==============================] - 1s 30us/step - loss: 0.3265 - acc: 0.8682 - val_loss: 0.3435 - val_acc: 0.8577
+Epoch 76/100
+25000/25000 [==============================] - 1s 28us/step - loss: 0.3260 - acc: 0.8681 - val_loss: 0.3432 - val_acc: 0.8573
+Epoch 77/100
+25000/25000 [==============================] - 1s 27us/step - loss: 0.3256 - acc: 0.8684 - val_loss: 0.3429 - val_acc: 0.8575
+Epoch 78/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3251 - acc: 0.8686 - val_loss: 0.3425 - val_acc: 0.8574
+Epoch 79/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3247 - acc: 0.8689 - val_loss: 0.3422 - val_acc: 0.8577
+Epoch 80/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.3243 - acc: 0.8685 - val_loss: 0.3418 - val_acc: 0.8576
+Epoch 81/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3239 - acc: 0.8685 - val_loss: 0.3416 - val_acc: 0.8578
+Epoch 82/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3235 - acc: 0.8690 - val_loss: 0.3412 - val_acc: 0.8576
+Epoch 83/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.3230 - acc: 0.8689 - val_loss: 0.3409 - val_acc: 0.8581
+Epoch 84/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.3226 - acc: 0.8692 - val_loss: 0.3407 - val_acc: 0.8585
+Epoch 85/100
+25000/25000 [==============================] - 1s 28us/step - loss: 0.3223 - acc: 0.8699 - val_loss: 0.3403 - val_acc: 0.8581
+Epoch 86/100
+25000/25000 [==============================] - 1s 27us/step - loss: 0.3219 - acc: 0.8694 - val_loss: 0.3401 - val_acc: 0.8582
+Epoch 87/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3215 - acc: 0.8695 - val_loss: 0.3401 - val_acc: 0.8578
+Epoch 88/100
+25000/25000 [==============================] - 1s 28us/step - loss: 0.3212 - acc: 0.8696 - val_loss: 0.3395 - val_acc: 0.8584
+Epoch 89/100
+25000/25000 [==============================] - 1s 23us/step - loss: 0.3208 - acc: 0.8705 - val_loss: 0.3393 - val_acc: 0.8584
+Epoch 90/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.3205 - acc: 0.8696 - val_loss: 0.3390 - val_acc: 0.8586
+Epoch 91/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.3201 - acc: 0.8695 - val_loss: 0.3390 - val_acc: 0.8584
+Epoch 92/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3198 - acc: 0.8700 - val_loss: 0.3385 - val_acc: 0.8589
+Epoch 93/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.3195 - acc: 0.8702 - val_loss: 0.3382 - val_acc: 0.8588
+Epoch 94/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3191 - acc: 0.8701 - val_loss: 0.3382 - val_acc: 0.8585
+Epoch 95/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.3189 - acc: 0.8705 - val_loss: 0.3378 - val_acc: 0.8588
+Epoch 96/100
+25000/25000 [==============================] - 1s 24us/step - loss: 0.3185 - acc: 0.8706 - val_loss: 0.3376 - val_acc: 0.8590
+Epoch 97/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3182 - acc: 0.8705 - val_loss: 0.3374 - val_acc: 0.8588
+Epoch 98/100
+25000/25000 [==============================] - 1s 25us/step - loss: 0.3179 - acc: 0.8709 - val_loss: 0.3371 - val_acc: 0.8593
+Epoch 99/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3176 - acc: 0.8708 - val_loss: 0.3370 - val_acc: 0.8590
+Epoch 100/100
+25000/25000 [==============================] - 1s 26us/step - loss: 0.3173 - acc: 0.8709 - val_loss: 0.3367 - val_acc: 0.8593
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[16]:&lt;/div&gt;
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;&lt;keras.callbacks.history at 0x7f48998af0f0&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;
+</summary><category term="python"></category></entry><entry><title>[Boltzman] - Boston Home Prices - (keras)</title><link href="https://niko79542.github.io/boston-keras.html" rel="alternate"></link><published>2018-02-05T15:22:00-08:00</published><updated>2018-02-05T15:22:00-08:00</updated><author><name>Niko Skoularikis</name></author><id>tag:niko79542.github.io,2018-02-05:boston-keras.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -1137,7 +2593,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Boltzman---Bostom-Home-Prices-(Keras)"&gt;Boltzman - Bostom Home Prices (Keras)&lt;a class="anchor-link" href="#Boltzman---Bostom-Home-Prices-(Keras)"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Redoing one of the earlier problems using Keras, just to get the hang of it.&lt;/p&gt;
+&lt;h3 id="Boltzman---Bostom-Home-Prices-(Keras)"&gt;Boltzman - Bostom Home Prices (Keras)&lt;a class="anchor-link" href="#Boltzman---Bostom-Home-Prices-(Keras)"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Redoing the &lt;a href="https://niko79542.github.io/multiple-gradient.html"&gt;Boston Linear Regression&lt;/a&gt; to do it using Keras, just to get the hang of it.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1505,7 +2961,7 @@ Model Mean Abs Err: 3.4 | Model Mean Squared Err: 22.13 | Model Mean Abs %Err: 0
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="python"></category></entry><entry><title>Boltzman - MNIST: Softmax Model</title><link href="https://niko79542.github.io/mnist-softmax.html" rel="alternate"></link><published>2018-02-01T14:49:00-08:00</published><updated>2018-02-01T14:49:00-08:00</updated><author><name>Niko Skoularikis</name></author><id>tag:niko79542.github.io,2018-02-01:mnist-softmax.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="python"></category></entry><entry><title>[Boltzman] - MNIST: Softmax Model</title><link href="https://niko79542.github.io/mnist-softmax.html" rel="alternate"></link><published>2018-02-01T14:49:00-08:00</published><updated>2018-02-01T14:49:00-08:00</updated><author><name>Niko Skoularikis</name></author><id>tag:niko79542.github.io,2018-02-01:mnist-softmax.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -3069,7 +4525,7 @@ B: 1800 | ME: 0.23 | ACC: 0.93
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="python"></category></entry><entry><title>Botlzman - Lightswitch Example: Neural Network Solution for XOR</title><link href="https://niko79542.github.io/neural-networks.html" rel="alternate"></link><published>2018-01-30T19:15:00-08:00</published><updated>2018-01-30T19:15:00-08:00</updated><author><name>Niko Skoularikis</name></author><id>tag:niko79542.github.io,2018-01-30:neural-networks.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="python"></category></entry><entry><title>[Botlzman] - Lightswitch Example: Neural Network Solution for XOR</title><link href="https://niko79542.github.io/neural-networks.html" rel="alternate"></link><published>2018-01-30T19:15:00-08:00</published><updated>2018-01-30T19:15:00-08:00</updated><author><name>Niko Skoularikis</name></author><id>tag:niko79542.github.io,2018-01-30:neural-networks.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -4460,7 +5916,7 @@ h6:hover .anchor-link {
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="python"></category></entry><entry><title>Boltzman - Boston Home Prices: Multiple Variable Linear Regression</title><link href="https://niko79542.github.io/multiple-gradient.html" rel="alternate"></link><published>2018-01-27T15:24:00-08:00</published><updated>2018-01-27T15:24:00-08:00</updated><author><name>Niko Skoularikis</name></author><id>tag:niko79542.github.io,2018-01-27:multiple-gradient.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="python"></category></entry><entry><title>[Boltzman] - Boston Home Prices: Multiple Variable Linear Regression</title><link href="https://niko79542.github.io/multiple-gradient.html" rel="alternate"></link><published>2018-01-27T15:24:00-08:00</published><updated>2018-01-27T15:24:00-08:00</updated><author><name>Niko Skoularikis</name></author><id>tag:niko79542.github.io,2018-01-27:multiple-gradient.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -5956,7 +7412,7 @@ EPOCH#500: MSE of 22.49
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="python"></category></entry><entry><title>Boltzman - IMDB Sentiment: Logistic Regression</title><link href="https://niko79542.github.io/logistic.html" rel="alternate"></link><published>2018-01-20T19:57:00-08:00</published><updated>2018-01-20T19:57:00-08:00</updated><author><name>Niko Skoularikis</name></author><id>tag:niko79542.github.io,2018-01-20:logistic.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="python"></category></entry><entry><title>[Boltzman] - IMDB Sentiment: Logistic Regression</title><link href="https://niko79542.github.io/logistic.html" rel="alternate"></link><published>2018-01-20T19:57:00-08:00</published><updated>2018-01-20T19:57:00-08:00</updated><author><name>Niko Skoularikis</name></author><id>tag:niko79542.github.io,2018-01-20:logistic.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -7123,18 +8579,13 @@ Review:  A review's is the words of the review, represented as numbers in a nump
 &lt;div class="output"&gt;
 &lt;div class="output_area"&gt;
 &lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_text output_error"&gt;
-&lt;pre&gt;
-&lt;span class="ansi-red-fg"&gt;---------------------------------------------------------------------------&lt;/span&gt;
-&lt;span class="ansi-red-fg"&gt;ModuleNotFoundError&lt;/span&gt;                       Traceback (most recent call last)
-&lt;span class="ansi-green-fg"&gt;&lt;ipython-input-1-42fe4f9b921d&gt;&lt;/span&gt; in &lt;span class="ansi-cyan-fg"&gt;&lt;module&gt;&lt;/span&gt;&lt;span class="ansi-blue-fg"&gt;()&lt;/span&gt;
-&lt;span class="ansi-green-intense-fg ansi-bold"&gt;      1&lt;/span&gt; &lt;span class="ansi-green-fg"&gt;import&lt;/span&gt; numpy &lt;span class="ansi-green-fg"&gt;as&lt;/span&gt; np
-&lt;span class="ansi-green-fg"&gt;----&gt; 2&lt;/span&gt;&lt;span class="ansi-red-fg"&gt; &lt;/span&gt;&lt;span class="ansi-green-fg"&gt;from&lt;/span&gt; keras&lt;span class="ansi-blue-fg"&gt;.&lt;/span&gt;datasets &lt;span class="ansi-green-fg"&gt;import&lt;/span&gt; imdb
-&lt;span class="ansi-green-intense-fg ansi-bold"&gt;      3&lt;/span&gt; 
-&lt;span class="ansi-green-intense-fg ansi-bold"&gt;      4&lt;/span&gt; TOP_N_WORDS &lt;span class="ansi-blue-fg"&gt;=&lt;/span&gt; &lt;span class="ansi-cyan-fg"&gt;1_000&lt;/span&gt;
-&lt;span class="ansi-green-intense-fg ansi-bold"&gt;      5&lt;/span&gt; &lt;span class="ansi-red-fg"&gt;# To speed up model, we will only analyze the most frequent TOP_N_WORDS words in all reviews.&lt;/span&gt;
-
-&lt;span class="ansi-red-fg"&gt;ModuleNotFoundError&lt;/span&gt;: No module named 'keras'&lt;/pre&gt;
+&lt;div class="output_subarea output_stream output_stderr output_text"&gt;
+&lt;pre&gt;/home/niko/anaconda3/envs/deep/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+/home/niko/anaconda3/envs/deep/lib/python3.6/importlib/_bootstrap.py:219: RuntimeWarning: compiletime version 3.5 of module 'tensorflow.python.framework.fast_tensor_util' does not match runtime version 3.6
+  return f(*args, **kwds)
+&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -7372,7 +8823,7 @@ CE = \frac{1}{m} * \sum_{i=1}^m [ -y^i * log(h_{ \theta}(x^i)) - (1 - y^i) * log
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="python"></category></entry><entry><title>Ng ML - Single Variable Linear Regression</title><link href="https://niko79542.github.io/single-gradient.html" rel="alternate"></link><published>2018-01-13T08:25:00-08:00</published><updated>2018-01-13T08:25:00-08:00</updated><author><name>Niko Skoularikis</name></author><id>tag:niko79542.github.io,2018-01-13:single-gradient.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="python"></category></entry><entry><title>[Ng ML] - Single Variable Linear Regression</title><link href="https://niko79542.github.io/single-gradient.html" rel="alternate"></link><published>2018-01-13T08:25:00-08:00</published><updated>2018-01-13T08:25:00-08:00</updated><author><name>Niko Skoularikis</name></author><id>tag:niko79542.github.io,2018-01-13:single-gradient.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
