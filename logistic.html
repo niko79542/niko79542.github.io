@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>  Boltzman - IMDB Sentiment: Logistic Regression | Real Data Talk
+  <title>  [Boltzman] - IMDB Sentiment: Logistic Regression | Real Data Talk
 </title>
   <link rel="canonical" href="/logistic.html">
 
@@ -44,7 +44,7 @@
 
   <div class="main">
     <div class="container">
-      <h1>  Boltzman - IMDB Sentiment: Logistic Regression
+      <h1>  [Boltzman] - IMDB Sentiment: Logistic Regression
 </h1>
       <hr>
   <article class="article">
@@ -1231,18 +1231,13 @@ Review:  A review's is the words of the review, represented as numbers in a nump
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
-<span class="ansi-green-fg"><ipython-input-1-42fe4f9b921d></span> in <span class="ansi-cyan-fg"><module></span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">import</span> numpy <span class="ansi-green-fg">as</span> np
-<span class="ansi-green-fg">----> 2</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> keras<span class="ansi-blue-fg">.</span>datasets <span class="ansi-green-fg">import</span> imdb
-<span class="ansi-green-intense-fg ansi-bold">      3</span> 
-<span class="ansi-green-intense-fg ansi-bold">      4</span> TOP_N_WORDS <span class="ansi-blue-fg">=</span> <span class="ansi-cyan-fg">1_000</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-red-fg"># To speed up model, we will only analyze the most frequent TOP_N_WORDS words in all reviews.</span>
-
-<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named 'keras'</pre>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/home/niko/anaconda3/envs/deep/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+/home/niko/anaconda3/envs/deep/lib/python3.6/importlib/_bootstrap.py:219: RuntimeWarning: compiletime version 3.5 of module 'tensorflow.python.framework.fast_tensor_util' does not match runtime version 3.6
+  return f(*args, **kwds)
+</pre>
 </div>
 </div>
 </div>
