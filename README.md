@@ -1,4 +1,4 @@
-### [ReaL Data Talk](niko79542.github.io)
+### [ReaL Data Talk](https://niko79542.github.io/)
 
 This repo contains homeworks from the Deep Learning Lecture Series from the [Boltzman-Institute](http://www.boltzmann-institute.com/), Andrew Ng's Machine Learning course on Coursera and possibly [Udacity's Foundations of Deep Learning](https://www.udacity.com/course/deep-learning-nanodegree-foundation--nd101)
 
